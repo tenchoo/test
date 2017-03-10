@@ -1,0 +1,8 @@
+runtime/
+.idea/
+.phpintel/
+*.DS_Store
+sftp-config.json
+.vscode/
+itboye/
+!itboye/function.php
