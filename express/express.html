@@ -1,0 +1,282 @@
+<html class="ui-mobile"><head><base href="http://m.kuaidi100.com/index_all.html?type=zhongtong&amp;postid=378910527991">
+<title>快递100 - 查快递,寄快递,上快递100</title>
+<meta charset="utf-8">
+<meta name="Keywords" content="快递100,快递单号查询,快递网点查询,快递电话查询,快递查询">
+<meta name="Description" content="提供上百家常用快递、物流公司的快递单号查询、快递网点电话查询、快递价格查询、网上寄快递服务，支持手机查询快递，提供免费Open API。">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<meta name="apple-itunes-app" content="app-id=458270120">
+<link rel="shortcut icon" href="//www.kuaidi100.com/favicon.ico">
+<link rel="apple-touch-icon" href="//cdn.kuaidi100.com/images/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="72x72" href="//cdn.kuaidi100.com/images/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="114x114" href="//cdn.kuaidi100.com/images/touch-icon-iphone4.png">
+<link rel="stylesheet" href="//cdn.kuaidi100.com/css/smart/jquery.mobile-1.1.0.min.css?version=201603311022">
+<link rel="stylesheet" href="//cdn.kuaidi100.com/css/smart/index.css?version=201603311022">
+<script src="//hm.baidu.com/hm.js?22ea01af58ba2be0fec7c11b25e88e6c"></script><script src="https://pagead2.googlesyndication.com/pub-config/r20160212/ca-pub-8703497864096994.js"></script><script src="//cdn.kuaidi100.com/js/util/jquery-1.7.1.min.js?version=201603311022"></script>
+<script src="//cdn.kuaidi100.com/js/util/jquery.mobile-1.1.0.min.js?version=201603311022"></script>
+</head>
+<body class="ui-mobile-viewport ui-overlay-c">
+<div data-role="page" id="input" data-url="input" tabindex="0" class="ui-page ui-body-c ui-page-header-fixed ui-page-footer-fixed" style="padding-top: 68px; padding-bottom: 48px; min-height: 551px;">
+  <div data-role="header" class="smart-header ui-header ui-bar-a ui-header-fixed slidedown" data-position="fixed" data-tap-toggle="false" role="banner">
+    <h1 class="logo ui-title" role="heading" aria-level="1">快递100</h1>
+  </div>
+  <div data-role="content" class="smart-input-div ui-content" role="main"> <input id="companyName" class="input1 input-focus ui-input-text ui-body-c ui-corner-all ui-shadow-inset" value="智能识别快递公司" placeholder="智能识别快递公司" readonly="" onclick="gotoSelect();return false;"> <input id="kuaidiNum" class="input1 ui-input-text ui-body-c ui-corner-all ui-shadow-inset" value="" autocomplete="off" placeholder="请输入您手中的包裹单号">
+    <div id="valideBox" class="smart-div-valid" style="display: none;"><input id="validnum" class="input2 ui-input-text ui-body-c ui-corner-all ui-shadow-inset" value="" autocomplete="off" placeholder="请输入验证码"><img id="valiimages" src="//cdn.kuaidi100.com/images/clear.gif" onclick="refreshCode()" alt="点击获取新验证码"></div>
+    <a href="#" data-role="button" class="a-query ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all" onclick="query();return false;" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text"><span id="query-wait" class="icon-query"></span>查询</span></span></a> </div>
+  <div data-role="footer" class="footer-docs smart-footer ui-footer ui-bar-a ui-footer-fixed slideup" data-position="fixed" data-tap-toggle="false" role="contentinfo">
+    <div class="app-box hidden">
+      <div class="app-open"> <img src="//cdn.kuaidi100.com/images/smart/72x72.png" class="app-img">
+        <div class="app-content">
+          <p>使用<em>快递100客户端</em></p>
+          <p>体验更好的快递查询</p>
+        </div>
+        <span class="app-btn"><a class="ui-link">立即开启</a></span></div>
+      <div class="app-close"></div>
+    </div>
+  </div>
+</div>
+<div data-role="page" id="select" class="smart-select-page" data-url="select">
+  <div data-role="header" class="smart-header" data-position="fixed" data-tap-toggle="false">
+    <h1 class="title">选择快递公司</h1>
+    <a href="#input" class="smart-return-btn" data-transition="none" rel="external" data-ajax="false">返回</a> </div>
+  <div class="smart-word-list">
+    <ul class="smart-word-ul">
+      <li class="li-selected"><a class="a-common" href="#">常用快递</a></li>
+      <li class="even"><a href="#">A</a><a href="#">B</a><a href="#">C</a><a href="#">D</a></li>
+      <li><a href="#">E</a><a href="#">F</a><a href="#">G</a><a href="#">H</a></li>
+      <li class="even"><a href="#">J</a><a href="#">K</a><a href="#">L</a><a href="#">M</a></li>
+      <li><a href="#">O</a><a href="#">Q</a><a href="#">R</a><a href="#">S</a></li>
+      <li class="even"><a href="#">T</a><a href="#">U</a><a href="#">W</a><a href="#">X</a></li>
+      <li><a href="#">Y</a><a href="#">Z</a><a href="#"></a><a href="#"></a></li>
+      <li class="even"><a href="http://m.kuaidi100.com/all/" style="display: block;width: 100%;font-size: 16px;">更多快递公司</a></li>
+    </ul>
+  </div>
+  <div data-role="content" class="smart-select-list">
+    <div class="content-primary">
+      <ul data-role="listview" id="ui-common">
+        <li class="smart-select-li" onclick="selectCompany('ems');">EMS</li>
+        <li class="smart-select-li" onclick="selectCompany('shentong');">申通快递</li>
+        <li class="smart-select-li" onclick="selectCompany('shunfeng');">顺丰速运</li>
+        <li class="smart-select-li" onclick="selectCompany('yuantong');">圆通速递</li>
+        <li class="smart-select-li" onclick="selectCompany('yunda');">韵达快运</li>
+        <li class="smart-select-li" onclick="selectCompany('zhongtong');">中通快递</li>
+        <li class="smart-select-li" onclick="selectCompany('huitongkuaidi');">百世快递</li>
+        <li class="smart-select-li" onclick="selectCompany('tiantian');">天天快递</li>
+        <li class="smart-select-li" onclick="selectCompany('zhaijisong');">宅急送</li>
+        <li class="smart-select-li" onclick="selectCompany('youzhengguonei');">邮政国内包裹</li>
+        <li class="smart-select-li" onclick="selectCompany('youzhengguoji');">邮政国际包裹</li>
+        <li class="smart-select-li" onclick="selectCompany('emsguoji');">EMS国际快递</li>
+      </ul>
+      <ul data-role="listview" id="ui-a" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('aae');">AAE-中国</li>
+        <li class="smart-select-li" onclick="selectCompany('anjiekuaidi');">安捷快递</li>
+        <li class="smart-select-li" onclick="selectCompany('anxindakuaixi');">安信达</li>
+      </ul>
+      <ul data-role="listview" id="ui-b" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('youzhengguonei');">包裹/平邮/挂号信</li>
+        <li class="smart-select-li" onclick="selectCompany('bht');">BHT国际快递</li>
+        <li class="smart-select-li" onclick="selectCompany('baifudongfang');">百福东方</li>
+      </ul>
+      <ul data-role="listview" id="ui-c" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('cces');">CCES（希伊艾斯）</li>
+        <li class="smart-select-li" onclick="selectCompany('lijisong');">成都立即送</li>
+      </ul>
+      <ul data-role="listview" id="ui-d" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('dhl');">DHL</li>
+        <li class="smart-select-li" onclick="selectCompany('dhlde');">DHL德国</li>
+        <li class="smart-select-li" onclick="selectCompany('dsukuaidi');">D速物流</li>
+        <li class="smart-select-li" onclick="selectCompany('debangwuliu');">德邦物流</li>
+        <li class="smart-select-li" onclick="selectCompany('datianwuliu');">大田物流</li>
+        <li class="smart-select-li" onclick="selectCompany('dpex');">DPEX</li>
+        <li class="smart-select-li" onclick="selectCompany('disifang');">递四方</li>
+      </ul>
+      <ul data-role="listview" id="ui-e" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('ems');">EMS - 国内</li>
+        <li class="smart-select-li" onclick="selectCompany('emsguoji');">EMS - 国际</li>
+        <li class="smart-select-li" onclick="selectCompany('ems');">E邮宝</li>
+      </ul>
+      <ul data-role="listview" id="ui-f" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('rufengda');">凡客</li>
+        <li class="smart-select-li" onclick="selectCompany('fedexus');">FedEx - 美国</li>
+        <li class="smart-select-li" onclick="selectCompany('fedex');">FedEx - 国际</li>
+        <li class="smart-select-li" onclick="selectCompany('lianbangkuaidi');">FedEx - 国内</li>
+        <li class="smart-select-li" onclick="selectCompany('feikangda');">飞康达</li>
+      </ul>
+      <ul data-role="listview" id="ui-g" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('youzhengguonei');">挂号信</li>
+        <li class="smart-select-li" onclick="selectCompany('ganzhongnengda');">能达速递</li>
+        <li class="smart-select-li" onclick="selectCompany('gongsuda');">共速达</li>
+        <li class="smart-select-li" onclick="selectCompany('gls');">GLS</li>
+      </ul>
+      <ul data-role="listview" id="ui-h" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('tiantian');">海航天天</li>
+        <li class="smart-select-li" onclick="selectCompany('huitongkuaidi');">百世快递</li>
+        <li class="smart-select-li" onclick="selectCompany('tiandihuayu');">华宇物流</li>
+        <li class="smart-select-li" onclick="selectCompany('hengluwuliu');">恒路物流</li>
+        
+        <li class="smart-select-li" onclick="selectCompany('huaxialongwuliu');">华夏龙</li>
+      </ul>
+      <ul data-role="listview" id="ui-j" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('jiajiwuliu');">佳吉快运</li>
+        <li class="smart-select-li" onclick="selectCompany('jialidatong');">嘉里大通</li>
+        <li class="smart-select-li" onclick="selectCompany('jiayiwuliu');">佳怡物流</li>
+        <li class="smart-select-li" onclick="selectCompany('jinguangsudikuaijian');">京广速递</li>
+        <li class="smart-select-li" onclick="selectCompany('jindawuliu');">金大物流</li>
+        <li class="smart-select-li" onclick="selectCompany('jinyuekuaidi');">晋越快递</li>
+        <li class="smart-select-li" onclick="selectCompany('jixianda');">急先达</li>
+        <li class="smart-select-li" onclick="selectCompany('jiayunmeiwuliu');">加运美</li>
+      </ul>
+      <ul data-role="listview" id="ui-k" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('kuaijiesudi');">快捷速递</li>
+        <li class="smart-select-li" onclick="selectCompany('kuayue');">跨越速运</li>
+      </ul>
+      <ul data-role="listview" id="ui-l" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('lianbangkuaidi');">联邦快递</li>
+        <li class="smart-select-li" onclick="selectCompany('longbanwuliu');">龙邦速递</li>
+        <li class="smart-select-li" onclick="selectCompany('lanbiaokuaidi');">蓝镖快递</li>
+        <li class="smart-select-li" onclick="selectCompany('lijisong');">立即送</li>
+        <li class="smart-select-li" onclick="selectCompany('lejiedi');">乐捷递</li>
+        <li class="smart-select-li" onclick="selectCompany('lianhaowuliu');">联昊通</li>
+      </ul>
+      <ul data-role="listview" id="ui-m" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('minghangkuaidi');">民航快递</li>
+        <li class="smart-select-li" onclick="selectCompany('meiguokuaidi');">美国快递</li>
+        <li class="smart-select-li" onclick="selectCompany('menduimen');">门对门</li>
+      </ul>
+      <ul data-role="listview" id="ui-o" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('ocs');">OCS</li>
+      </ul>
+      <ul data-role="listview" id="ui-q" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('quanfengkuaidi');">全峰快递</li>
+        <li class="smart-select-li" onclick="selectCompany('quanyikuaidi');">全一快递</li>
+        <li class="smart-select-li" onclick="selectCompany('quanchenkuaidi');">全晨快递</li>
+        <li class="smart-select-li" onclick="selectCompany('quanjitong');">全际通</li>
+        <li class="smart-select-li" onclick="selectCompany('quanritongkuaidi');">全日通</li>
+      </ul>
+      <ul data-role="listview" id="ui-r" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('rufengda');">如风达</li>
+      </ul>
+      <ul data-role="listview" id="ui-s" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('shentong');">申通E物流</li>
+        <li class="smart-select-li" onclick="selectCompany('shentong');">申通快递</li>
+        <li class="smart-select-li" onclick="selectCompany('shunfeng');">顺丰速运</li>
+        <li class="smart-select-li" onclick="selectCompany('suer');">速尔快递</li>
+        <li class="smart-select-li" onclick="selectCompany('shenghuiwuliu');">盛辉物流</li>
+        <li class="smart-select-li" onclick="selectCompany('shengfengwuliu');">盛丰物流</li>
+        <li class="smart-select-li" onclick="selectCompany('shangda');">上大国际</li>
+        <li class="smart-select-li" onclick="selectCompany('santaisudi');">三态速递</li>
+        <li class="smart-select-li" onclick="selectCompany('haihongwangsong');">山东海红</li>
+        <li class="smart-select-li" onclick="selectCompany('saiaodi');">赛澳递</li>
+      </ul>
+      <ul data-role="listview" id="ui-t" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('tnt');">TNT</li>
+        <li class="smart-select-li" onclick="selectCompany('tiantian');">天天快递</li>
+        <li class="smart-select-li" onclick="selectCompany('tiandihuayu');">天地华宇</li>
+        <li class="smart-select-li" onclick="selectCompany('tonghetianxia');">通和天下</li>
+      </ul>
+      <ul data-role="listview" id="ui-u" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('ups');">UPS</li>
+        <li class="smart-select-li" onclick="selectCompany('usps');">USPS（美国邮政）</li>
+      </ul>
+      <ul data-role="listview" id="ui-w" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('wanjiawuliu');">万家物流</li>
+        <li class="smart-select-li" onclick="selectCompany('wanxiangwuliu');">万象物流</li>
+        <li class="smart-select-li" onclick="selectCompany('weitepai');">微特派</li>
+      </ul>
+      <ul data-role="listview" id="ui-x" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('xinhongyukuaidi');">鑫飞鸿</li>
+        <li class="smart-select-li" onclick="selectCompany('xinbangwuliu');">新邦物流</li>
+        <li class="smart-select-li" onclick="selectCompany('xinfengwuliu');">信丰物流</li>
+        <li class="smart-select-li" onclick="selectCompany('cces');">希伊艾斯（CCES）</li>
+      </ul>
+      <ul data-role="listview" id="ui-y" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('yuantong');">圆通速递</li>
+        <li class="smart-select-li" onclick="selectCompany('yunda');">韵达快运</li>
+        <li class="smart-select-li" onclick="selectCompany('youzhengguonei');">邮政国内包裹</li>
+        <li class="smart-select-li" onclick="selectCompany('youzhengguoji');">邮政国际包裹</li>
+        <li class="smart-select-li" onclick="selectCompany('ems');">邮政特快专递</li>
+        <li class="smart-select-li" onclick="selectCompany('yuanchengwuliu');">远成物流</li>
+        <li class="smart-select-li" onclick="selectCompany('yafengsudi');">亚风速递</li>
+        <li class="smart-select-li" onclick="selectCompany('yuanweifeng');">源伟丰</li>
+        <li class="smart-select-li" onclick="selectCompany('youshuwuliu');">优速快递</li>
+        <li class="smart-select-li" onclick="selectCompany('yuanzhijiecheng');">元智捷诚</li>
+        <li class="smart-select-li" onclick="selectCompany('yuefengwuliu');">越丰物流</li>
+        <li class="smart-select-li" onclick="selectCompany('yuananda');">源安达</li>
+        <li class="smart-select-li" onclick="selectCompany('yuanfeihangwuliu');">原飞航</li>
+        <li class="smart-select-li" onclick="selectCompany('yinjiesudi');">银捷速递</li>
+        <li class="smart-select-li" onclick="selectCompany('yuntongkuaidi');">运通中港</li>
+      </ul>
+      <ul data-role="listview" id="ui-z" style="display:none">
+        <li class="smart-select-li" onclick="selectCompany('zhaijisong');">宅急送</li>
+        <li class="smart-select-li" onclick="selectCompany('zhongtong');">中通快递</li>
+        <li class="smart-select-li" onclick="selectCompany('zhongtiewuliu');">中铁快运</li>
+        <li class="smart-select-li" onclick="selectCompany('ztky');">中铁物流</li>
+        <li class="smart-select-li" onclick="selectCompany('zhongyouwuliu');">中邮物流</li>
+        <li class="smart-select-li" onclick="selectCompany('zhimakaimen');">芝麻开门</li>
+        <li class="smart-select-li" onclick="selectCompany('zhongxinda');">忠信达</li>
+        <li class="smart-select-li" onclick="selectCompany('zhengzhoujianhua');">郑州建华</li>
+      </ul>
+    </div>
+  </div>
+  <div data-role="footer" class="footer-docs smart-footer" data-position="fixed" data-tap-toggle="false">
+    <div class="app-box hidden">
+      <div class="app-open"> <img src="//cdn.kuaidi100.com/images/smart/72x72.png" class="app-img">
+        <div class="app-content">
+          <p>使用<em>快递100客户端</em></p>
+          <p>体验更好的快递查询</p>
+        </div>
+        <span class="app-btn"><a>立即开启</a></span></div>
+      <div class="app-close"></div>
+    </div>
+  </div>
+</div>
+<div data-role="page" id="result" data-url="result" tabindex="0" class="ui-page ui-body-c ui-page-header-fixed ui-page-footer-fixed ui-page-active" style="padding-top: 60px; padding-bottom: 48px; min-height: 559px;">
+  <div data-role="header" class="smart-header ui-header ui-bar-a ui-header-fixed slidedown" data-position="fixed" data-tap-toggle="false" role="banner">
+    <h1 class="title ui-title" role="heading" aria-level="1">查询结果</h1>
+    <a href="#input" class="smart-return-btn ui-btn-left ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all" data-direction="reverse" data-transition="none" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="a"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">返回</span></span></a> </div>
+  <div data-role="content" class="smart-result ui-content" style="margin-bottom:10px" role="main">
+    <div class="content-primary">
+      <div> <span id="result-comname" class="smart-result-comname">中通快递</span><span id="result-kuaidinum" class="smart-result-kuaidinum">378910527991</span> </div>
+      <table id="queryResult" cellpadding="0" cellspacing="0"><tbody><tr class="even first-line"><td class="col1"><span class="result-date">2016-04-04</span><span class="result-time">16:33</span></td><td class="colstatus"></td><td class="col2"><span>[深圳坂田] 深圳坂田 的 金乐伟 已收件 </span></td></tr><tr class="odd"><td class="col1"><span class="result-date">2016-04-04</span><span class="result-time">19:49</span></td><td class="colstatus"></td><td class="col2"><span>[深圳坂田] 深圳坂田 的 金乐伟 已收件 </span></td></tr><tr class="even"><td class="col1"><span class="result-date">2016-04-04</span><span class="result-time">20:40</span></td><td class="colstatus"></td><td class="col2"><span>[深圳坂田]  快件在深圳坂田装车,正发往杭州</span></td></tr><tr class="odd"><td class="col1"><span class="result-date">2016-04-04</span><span class="result-time">20:40</span></td><td class="colstatus"></td><td class="col2"><span>[深圳坂田] 快件在深圳坂田,正发往杭州</span></td></tr><tr class="even"><td class="col1"><span class="result-date">2016-04-04</span><span class="result-time">21:00</span></td><td class="colstatus"></td><td class="col2"><span>[深圳坂田]  快件在深圳坂田装车,正发往深圳中心</span></td></tr><tr class="odd"><td class="col1"><span class="result-date">2016-04-05</span><span class="result-time">01:18</span></td><td class="colstatus"></td><td class="col2"><span>[深圳中心] 快件到达深圳中心,上一站是深圳坂田目的地是</span></td></tr><tr class="even"><td class="col1"><span class="result-date">2016-04-05</span><span class="result-time">01:20</span></td><td class="colstatus"></td><td class="col2"><span>[深圳中心] 快件在深圳中心装车,正发往杭州中转部</span></td></tr><tr class="odd"><td class="col1"><span class="result-date">2016-04-05</span><span class="result-time">03:54</span></td><td class="colstatus"></td><td class="col2"><span>[深圳中心] 沪DC8230在深圳中心已发车，下一站杭州中转部，</span></td></tr><tr class="even"><td class="col1"><span class="result-date">2016-04-06</span><span class="result-time">01:10</span></td><td class="colstatus"></td><td class="col2"><span>[杭州中转部] 沪DC8230已经到达杭州中转部</span></td></tr><tr class="odd"><td class="col1"><span class="result-date">2016-04-06</span><span class="result-time">01:57</span></td><td class="colstatus"></td><td class="col2"><span>[杭州中转部] 快件到达杭州中转部,上一站是深圳中心目的地是</span></td></tr><tr class="even"><td class="col1"><span class="result-date">2016-04-06</span><span class="result-time">05:49</span></td><td class="colstatus"></td><td class="col2"><span>[杭州中转部] 快件在杭州中转部装车,正发往杭州乔司区</span></td></tr><tr class="odd"><td class="col1"><span class="result-date">2016-04-06</span><span class="result-time">07:19</span></td><td class="colstatus"></td><td class="col2"><span>[杭州乔司区] 快件到达杭州乔司区,上一站是杭州中转部 目的地是</span></td></tr><tr class="even"><td class="col1"><span class="result-date">2016-04-06</span><span class="result-time">07:20</span></td><td class="colstatus"></td><td class="col2"><span>[杭州乔司区] 杭州乔司区的和睦片区正在派件</span></td></tr><tr class="odd"><td class="col1"><span class="result-date">2016-04-06</span><span class="result-time">07:56</span></td><td class="colstatus"></td><td class="col2"><span>[杭州乔司区] 杭州乔司区的胡杨武正在派件</span></td></tr><tr class="even last-line checked"><td class="col1"><span class="result-date">2016-04-06</span><span class="result-time">12:39</span></td><td class="colstatus"></td><td class="col2"><span>[杭州乔司区] 派件已 签收 ,签收人是拍照签收签收网点是杭州乔司区</span></td></tr></tbody></table>
+      <div style="width:320px; margin:0.5rem auto">
+    <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- html5_320X100_BG -->
+        <ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px" data-ad-client="ca-pub-8703497864096994" data-ad-slot="5608947500" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:100px;margin:0;padding:0;position:relative;visibility:visible;width:320px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:100px;margin:0;padding:0;position:relative;visibility:visible;width:320px;background-color:transparent"><iframe width="320" height="100" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+       </div>
+    </div>
+  </div>
+  <!--smart-result-->
+  <div data-role="footer" class="footer-docs smart-footer ui-footer ui-bar-a ui-footer-fixed slideup" data-position="fixed" data-tap-toggle="false" role="contentinfo">
+    <div class="app-box hidden">
+      <div class="app-open"> <img src="//cdn.kuaidi100.com/images/smart/72x72.png" class="app-img">
+        <div class="app-content">
+          <p>使用<em>快递100客户端</em></p>
+          <p>体验更好的快递查询</p>
+        </div>
+        <span class="app-btn"><a class="ui-link">立即开启</a></span></div>
+      <div class="app-close"></div>
+    </div>
+  </div>
+</div>
+<div data-role="dialog" id="notfind" class="smart-error-page" data-url="notfind">
+  <div data-role="content" class="smart-error-div">
+    <div class="smart-error-content">
+      <p class="icon-error">该单号暂无查询记录</p>
+      <div class="smart-opera-btn"> <a href="//www.kuaidi100.com/user/login.shtml" data-role="button" class="btn-error-1" target="_blank">保存单号</a> <a href="http://www.zto.cn" data-role="button" class="btn-error-2" target="_blank">请到官网试试</a> </div>
+    </div>
+    <a href="#input" data-role="button" class="btn-close"></a> </div>
+</div>
+<div data-role="dialog" id="error" class="smart-error-page" data-url="error">
+  <div data-role="content" class="smart-error-div">
+    <div class="smart-error-content">
+      <p class="icon-error" id="errorMessage">该单号暂无查询记录</p>
+    </div>
+    <a href="#input" data-role="button" class="btn-close"></a> </div>
+</div>
+<script src="//www.kuaidi100.com/js/share/company.js?version=201603311022"></script>
+<script src="//cdn.kuaidi100.com/js/page/smart/query.js?version=201603311022"></script>
+<script src="//cdn.kuaidi100.com/js/share/count.js?version=201603311022"></script>
+
+<div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon ui-icon-loading"></span><h1>loading</h1></div></body></html>

@@ -1,0 +1,20 @@
+*{
+	background-color: #ed5913;
+	color:white;
+	font-size: 1.2rem;
+}
+html,body{
+	max-width: 640px;
+	min-width: 320px;
+}
+header{
+	font-size: 2rem;
+}
+.lottory{
+	font-size: 1.5rem;
+}
+h3{
+
+}
+.top{background:url(border.gif);}
+.read{}

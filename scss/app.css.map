@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";;;;;AAKA,IAAI;EACF,KAAK,ECDE,IAAI;EDEX,gBAAgB,ECDT,IAAI",
+"sources": ["app.scss","helper/_prarms.scss"],
+"names": [],
+"file": "app.css"
+}
