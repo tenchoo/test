@@ -1,5 +1,6 @@
 <?php
 //work content ...
+//stash content add
 $t = 52;
 echo floor($t/10).'-';
 echo ceil($t%10);
