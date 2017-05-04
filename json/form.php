@@ -12,6 +12,8 @@ header('Access-Control-Allow-Methods:POST');
 header('Access-Control-Allow-Headers:x-requested-with,content-type');
 
 
-echo json_encode($_POST);
+echo $_GET['id'];
+echo $_POST['name'];
+// echo json_encode($_POST);
 // echo json_encode(['code'=>1,'data'=>['a'=>1,'b'=>2]]);
 die();
