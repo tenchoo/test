@@ -11,10 +11,10 @@ header('Access-Control-Allow-Methods:POST');
 // 响应头设置
 header('Access-Control-Allow-Headers:x-requested-with,content-type');
 
-
-echo $_GET['id'];
-echo $_POST['name'];
+var_dump($_GET);
+var_dump($_POST);
+// echo $_GET['id'];
+// echo $_POST['date1'];
 // echo json_encode($_POST);
 // echo json_encode(['code'=>1,'data'=>['a'=>1,'b'=>2]]);
-
-die();
+return ;

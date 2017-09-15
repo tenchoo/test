@@ -4,6 +4,7 @@ runtime/
 *.DS_Store
 sftp-config.json
 .vscode/
+.sass-cache/
 itboye/
 !itboye/function.php
 node_modules/

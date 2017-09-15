@@ -1,0 +1,44 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ *
+ *compass compile [path]
+ *compass wath [path]
+ *
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "variables","mixin";
+
+@import "normalize-version","normalize/base","normalize/html5","normalize/links";
+
+@import "compass/layout","compass/css3","compass/typography";
+
+// $supported-browsers: chrome;
+/*! screen.scss */
+html{
+  min-height: 100%;
+}
+a{
+@at-root{
+  .stretch-full{
+    @include stretch();
+  }
+}
+}
+
+.bor-shd{
+  .tit{
+    @include ellipsis(true);
+  }
+  @include border-radius(2px);
+  @include opacity(.3);
+  @include inline-block();
+  color: $red;
+  @include box-shadow(1px 1px 3px 2px #cfcecf);
+}
+/*
+ *bottom footer
+ */
+@include sticky-footer(30px,'.bd','.bd_ft','.ft');
+
+@debug browsers();

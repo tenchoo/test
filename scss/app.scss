@@ -1,8 +1,10 @@
-/** app.scss */
-
-
+/*! app.scss */
+/** sass app.scss app css */
 @import './helper/_prarms.scss';
-
+*{
+  padding: 0;
+  margin: 0;
+}
 body{
   color : $black;
   background-color: $white;
