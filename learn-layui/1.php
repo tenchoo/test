@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="http://115.29.220.243/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
   .w300{ width:300px; }
+  .img-warp img{
+    height:120px !important;cursor:pointer;
+  }
   </style>
 
   <script src="<?=$cdn?>jquery/1.11.0/jquery.min.js"></script>
@@ -141,6 +144,16 @@
     </form>
   </div>
 </div>
+
+<table>
+  <tr><th></th></tr>
+  <tr>
+    <td class="img-warp" id="img-warp">
+      <img layer-src="http://api.ryzcgf.com/public/index.php/picture/index?id=1690" src="http://api.ryzcgf.com/public/index.php/picture/index?id=1690&size=120" alt=""  title="点击查看原图">
+      <img layer-src="http://api.ryzcgf.com/public/index.php/picture/index?id=1841" src="http://api.ryzcgf.com/public/index.php/picture/index?id=1841&size=120" alt="" title="点击查看原图">
+    </td>
+  </tr>
+</table>
 <!-- body end -->
 
 
@@ -181,6 +194,8 @@ layui.use(['layer','form','code','element'], function(){
     console.log(data.value); //得到被选中的值
     console.log(data.othis); //得到美化后的DOM对象
   });
+
+  layer.photos({ photos: '#img-warp' });
 });
 </script>
 </body>

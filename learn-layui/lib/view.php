@@ -24,40 +24,57 @@ function imgTag($id,$size=120,$click=false,$tooltip=false){
  * @param    boolean $click   [是否点击打开新窗口显示原图]
  * @param    boolean $tooltip [bootstrap-tooltip 或 自定义tooltip]
  * @return   [type]  [description]
+ * css:
+ *  /**自定义 tooltip 样式 start* /
+ *.tooltip-box{
+ *    position: absolute;
+ *    display: block;
+ *    line-height: 1.6;
+ *    background-color: #fff;
+ *    border: 1px solid #666;
+ *    font-size: 12px;
+ *    border-radius: 5px;
+ *    overflow: auto;
+ *    top:0px;left:0px;
+ *    z-index: 9;
+ *    cursor:pointer;
+ *}
+ *.img-show{ position:relative; }
+ * /**自定义 tooltip 样式 end* /
  * html:
- * <label class="img-show">{:imgTooltip($vo,120,true)}</label>
+  * <label class="img-show">{:imgTooltip($vo,120,true)}</label>
  * js:
  * //图片自定义 tooltip start
-*  var $tip,$img;
-*  $('.img-show').click(function(e){
-*      var $this = $(this);
-*      if($this.hasClass('clicking')){
-*          $(this).removeClass('clicking').children('.tooltip-box').css('display','none');
-*      }else{
-*          $this.addClass('clicking');
-*          $img  = $this.children('img');
-*          $tip  = $this.children('.tooltip-box');
-*          if($tip.length){
-*              fixPostion($tip,$this.offset().left);
-*          }else{
-*              $html = $('<img  class="tooltip-box" />');
-*              $this.append($html);
-*              $html.attr('src',$img.data('src')).load(function() {
-*                  fixPostion($this.children('.tooltip-box'),$this.offset().left);
-*              });
-*          }
-*      }
-*  });
-*  function fixPostion($tip,offleft){
-*      var wid = $tip.width();
-*      var bwid = document.body.clientWidth;
-*      if (offleft + wid > bwid) {
-*          $tip.css({left:-(wid + offleft - bwid + 10),display:'block'});
-*      }else{
-*          $tip.css({display:'block'});
-*      }
-*  }
-*  //图片自定义 tooltip end
+  *  var $tip,$img;
+  *  $('.img-show').click(function(e){
+  *      var $this = $(this);
+  *      if($this.hasClass('clicking')){
+  *          $(this).removeClass('clicking').children('.tooltip-box').css('display','none');
+  *      }else{
+  *          $this.addClass('clicking');
+  *          $img  = $this.children('img');
+  *          $tip  = $this.children('.tooltip-box');
+  *          if($tip.length){
+  *              fixPostion($tip,$this.offset().left);
+  *          }else{
+  *              $html = $('<img  class="tooltip-box" />');
+  *              $this.append($html);
+  *              $html.attr('src',$img.data('src')).load(function() {
+  *                  fixPostion($this.children('.tooltip-box'),$this.offset().left);
+  *              });
+  *          }
+  *      }
+  *  });
+  *  function fixPostion($tip,offleft){
+  *      var wid = $tip.width();
+  *      var bwid = document.body.clientWidth;
+  *      if (offleft + wid > bwid) {
+  *          $tip.css({left:-(wid + offleft - bwid + 10),display:'block'});
+  *      }else{
+  *          $tip.css({display:'block'});
+  *      }
+  *  }
+  *  //图片自定义 tooltip end
  */
 function imgTooltip($id,$size=120,$click=false,$tooltip=false){
   $size = $size ? $size : 120;
