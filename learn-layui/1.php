@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="<?=$cdn?>nprogress/nprogress.css">
   <link rel="stylesheet" href="<?=$cdn?>select2/4.0.0/css/select2.min.css">
   <link rel="stylesheet" href="<?=$cdn?>scojs/1.0.2/css/sco.message.css">
+  <link rel="stylesheet" href="http://115.29.220.243/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
   .w300{ width:300px; }
   </style>
@@ -27,7 +28,7 @@
   <div class="layui-header">
     <div class="layui-logo">LOGO / SITENAME</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
-    <!-- <ul class="layui-nav layui-layout-left">
+    <ul class="layui-nav layui-layout-left">
       <li class="layui-nav-item"><a href="">控制台</a></li>
       <li class="layui-nav-item"><a href="">商品管理</a></li>
       <li class="layui-nav-item"><a href="">用户</a></li>
@@ -52,7 +53,10 @@
         </dl>
       </li>
       <li class="layui-nav-item"><a href="">退了</a></li>
-    </ul> -->
+      <li class="layui-nav-item">
+        <a href="javascript:;" id="admin-fullscreen"><i class="fa fa-arrows-alt"></i> <span class="admin-fullText">全屏</span> </a>
+      </li>
+    </ul>
   </div>
 
   <div class="layui-side layui-bg-black">
@@ -85,6 +89,14 @@
   <div class="layui-body">
 
 
+<p>
+  <span class="layui-breadcrumb">
+    <a href="">首页</a>
+    <a href="">国际新闻</a>
+    <a href="">亚太地区</a>
+    <a><cite>正文</cite></a>
+  </span>
+</p>
 
 <!-- body start -->
 <button id="js-test" class="layui-btn">test</button>
@@ -140,9 +152,10 @@
 </div>
 <!-- script -->
 <script src="<?=$cdn?>select2/4.0.0/js/select2.min.js"></script>
+<script src="<?=$cdn?>select2/4.0.0/js/i18n/zh-CN.js"></script>
 <script defer="defer">
 // page init
-layui.use(['layer','form','code'], function(){
+layui.use(['layer','form','code','element'], function(){
   mylog('page','init');
 
   var layer = layui.layer,
