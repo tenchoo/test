@@ -1,0 +1,37 @@
+/* skin */
+@skin_blue : #169fe6;
+@skin_cyan : #2F4056;
+@skin_df   : #393D49;
+@skin_gray : #eee;
+@skin_green : #009688;
+@skin_orange : #FFB800;
+@skin_red : #ed5564;
+
+/* global var */
+@bg_color : @skin_df;
+
+* when (@bg_color = @skin_cyan) {
+  color: #666!important;
+}
+.skin-box{
+  background-color: @bg_color;
+}
+.layui-header{
+  background-color: @bg_color !important;
+}
+.layui-side{
+  background-color: @bg_color;
+}
+.layui-side{
+  .layui-nav{
+    background-color: @bg_color !important;
+  }
+  .layui-nav-child{
+    background-color: light(@bg_color,.8) !important;
+  }
+}
+.layui-body{
+}
+.layui-footer{
+  background-color: @bg_color !important;
+}

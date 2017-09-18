@@ -1,5 +1,6 @@
 runtime/
 .idea/
+dist/
 .phpintel/
 *.DS_Store
 sftp-config.json

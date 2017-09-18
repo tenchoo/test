@@ -21,6 +21,13 @@ function returnSuc($msg,$url='',$data=[],$time=1500){
   ajaxReTurn($msg,$url,$data,$time,true);
 }
 
-$id = _get('id',0);
-// returnErr('that is not ok ! ');
-returnSuc('that\'s ok ! ');
+$id      = _get('id',0);
+$op_type = _get('op','');
+if($op == 'login'){
+
+}elseif($op == 'logout'){
+
+}else{
+  // returnErr('that is not ok ! ');
+  returnSuc('that\'s ok ! ');
+}

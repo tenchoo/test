@@ -41,6 +41,28 @@ function mymsg(){
     return layer.msg(msg, {icon: parseInt(icon)});
   }
 }
+// web存储 : 一直有效
+function mylocal(name){
+  return ('undefined' != typeof arguments[1]) ? localStorage.setItem(name,arguments[1]) : localStorage.getItem(name);
+}
+// web存储 : session周期
+function mysession(name){
+  return ('undefined' != typeof arguments[1]) ? sessionStorage.setItem(name,arguments[1]) : sessionStorage.getItem(name);
+}
+// redirect : url time
+function goTo() {
+  var url = ('undefined' != typeof arguments[0]) ? arguments[0] : '',
+  time    = ('undefined' != typeof arguments[1]) ? arguments[1] : 0;
+  if(time >0){
+    setTimeout(function() {
+      if(url) location.href = url;
+      else location.reload();
+    }, time);
+  }else{
+    if(url) location.href = url;
+    else location.reload();
+  }
+}
 //layui
 function myconfirm(con,call){
   con = con || '确认要执行该操作吗?';
@@ -67,7 +89,6 @@ layui.use(['layer'], function(){
   NProgress.done();
   // myconfirm('',function(){});
 });
-
 /**
  * 2017-09-14 16:15:14
  */
@@ -77,21 +98,39 @@ layui.use(['layer'], function(){
 // })();
 
 (function($, w) {
-
-  // redirect : url time
-  function goTo() {
-    var url = ('undefined' != typeof arguments[0]) ? arguments[0] : '',
-    time    = ('undefined' != typeof arguments[1]) ? arguments[1] : 0;
-    if(time >0){
-      setTimeout(function() {
-        if(url) location.href = url;
-        else location.reload();
-      }, time);
-    }else{
-      if(url) location.href = url;
-      else location.reload();
+  var skinpath = './css/skin/';
+  var skin = mylocal("skin");
+  var menu = mylocal("current_menu");
+  // skin 初始化
+  skin  && $("#style-color").attr("href", skin);
+  // skin 选择
+  $(function() {
+    // 给每个风格选择框 上色加事件
+    var $skinbox = $('.skin');
+    if($skinbox.length){
+      var $link    = $('#style-color');
+      $skinbox.each(function(i) {
+        $(this).css({ backgroundColor: '#' + $(this).data('ref') })
+      })
+      $skinbox.click(function(e) {
+        var color = $(this).data('ref');
+        var skin  = skinpath + $(this).data('skin') + '.css';
+        $link.attr('href', skin);
+        mylocal("color", color);
+        mylocal("skin", skin);
+        return false;
+      });
     }
-  }
+  });
+
+  // head menu
+  var top_menu_id = $('#layui-header .layui-this').data('id');
+  $('#layui-header .layui-nav-item').click(function() {
+    $this = $(this);
+    var id = $this.data('id');
+  });
+  // menu init
+
   // alertTODO error
   function alertTODO(msg) {
     msg = msg || "此功能未实现";

@@ -1,20 +1,59 @@
-<?php require 'config.php';?>
+<?php
+require 'config.php';
+require 'common.php';
+// task logic
+const UID = 2;
+
+$uid   = UID;
+$uinfo = ['name'=>'name1718888123','nick'=>'rainbow','avatar'=>'http://t.cn/RCzsdCq'];
+
+// 查询 所有可显示菜单/超级管理员则全部菜单 - 顶级
+$menu_all  = [
+  1=>['name'=>'控制台','url'=>'#','id'=>"1",'child'=>[
+    [
+      'name'=>'控制台1','url'=>'#','id'=>"11",
+      'child'=>[
+        ['name'=>'控制台11','url'=>'#','id'=>"111",],
+        ['name'=>'控制台12','url'=>'#','id'=>"112",],
+        ['name'=>'控制台13','url'=>'#','id'=>"113",],
+      ]
+    ],
+    [
+      'name'=>'控制台2','url'=>'#','id'=>"12",
+      'child'=>[
+        ['name'=>'控制台21','url'=>'#','id'=>"211",],
+        ['name'=>'控制台22','url'=>'#','id'=>"212",],
+      ]
+    ],
+    [
+      'name'=>'控制台3','url'=>'#','id'=>"13",
+      'child'=>[]
+    ],
+  ],],
+  2=>['name'=>'商品','url'=>'#','id'=>"2",'child'=>[]],
+  3=>['name'=>'用户','url'=>'#','id'=>"3",'child'=>[]],
+  4=>['name'=>'其他','url'=>'#','id'=>"4",'child'=>[]],
+];
+// 查询用户顶级菜单
+$top_menu_id = 1;
+$left_menu = $menu_all[$top_menu_id]['child'];
+$menu_id   = _get('menu_id',0);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title> layer </title>
-
   <link rel="stylesheet" href="<?=$cdn?>layui/2.1.3/css/layui.css">
   <link rel="stylesheet" href="<?=$cdn?>nprogress/nprogress.css">
   <link rel="stylesheet" href="<?=$cdn?>select2/4.0.0/css/select2.min.css">
   <link rel="stylesheet" href="<?=$cdn?>scojs/1.0.2/css/sco.message.css">
-  <link rel="stylesheet" href="http://115.29.220.243/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?=$cdn?>font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="<?=$css?>common.css" media="screen">
+  <link rel="stylesheet" id="style-color" href="<?=$css?>skin/df.css" media="screen">
   <style>
-  .w300{ width:300px; }
-  .img-warp img{
-    height:120px !important;cursor:pointer;
-  }
+  .hide{ display: none; }
   </style>
 
   <script src="<?=$cdn?>jquery/1.11.0/jquery.min.js"></script>
@@ -23,72 +62,67 @@
   <script src="<?=$cdn?>scojs/1.0.2/js/sco.modal.js"></script>
   <script src="<?=$cdn?>scojs/1.0.2/js/sco.message.js"></script>
   <script src="<?=$cdn?>scojs/1.0.2/js/sco.confirm.js"></script>
-  <script src="common.js" defer="defer"></script>
+  <script src="<?=$js?>common.js" defer="defer"></script>
 </head>
 <body>
 
+<div class="skin-box hide">
+  <a href="#" class="skin layui-nav-img" data-skin="df" data-ref="393D49"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="cyan" data-ref="2F4056"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="blue" data-ref="169fe6"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="green" data-ref="009688"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="red" data-ref="fb6e52"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="orange" data-ref="FFB800"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="gray" data-ref="eeeeee"></a>
+</div>
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
     <div class="layui-logo">LOGO / SITENAME</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
-      <li class="layui-nav-item"><a href="">控制台</a></li>
-      <li class="layui-nav-item"><a href="">商品管理</a></li>
-      <li class="layui-nav-item"><a href="">用户</a></li>
-      <li class="layui-nav-item">
-        <a href="javascript:;">其它系统</a>
-        <dl class="layui-nav-child">
-          <dd><a href="">邮件管理</a></dd>
-          <dd><a href="">消息管理</a></dd>
-          <dd><a href="">授权管理</a></dd>
-        </dl>
-      </li>
+      <?php foreach ($menu_all as $v) { ?>
+      <li class="layui-nav-item <?php if($top_menu_id== $v['id']) echo 'layui-this';?>" data-id="<?=$v['id']?>"><a href=""><?=$v['name']?></a></li>
+      <?php } ?>
     </ul>
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
         <a href="javascript:;">
-          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-          贤心
+          <img src="<?=$uinfo['avatar']?>" class="layui-nav-img">
+          <?=$uinfo['nick']?>
         </a>
         <dl class="layui-nav-child">
           <dd><a href="">基本资料</a></dd>
           <dd><a href="">安全设置</a></dd>
         </dl>
       </li>
-      <li class="layui-nav-item"><a href="">退了</a></li>
+      <li class="layui-nav-item"><a href="ajax.php?op=logout" class="ajax-get">退了</a></li>
       <li class="layui-nav-item">
         <a href="javascript:;" id="admin-fullscreen"><i class="fa fa-arrows-alt"></i> <span class="admin-fullText">全屏</span> </a>
       </li>
     </ul>
   </div>
 
-  <div class="layui-side layui-bg-black">
+  <div class="layui-side">
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      <!-- <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+      <ul class="layui-nav layui-nav-tree" lay-filter="side-menu">
+        <?php foreach ($left_menu as $v) { ?>
         <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">所有商品</a>
+          <a class="" href="javascript:;"><?=$v['name']?></a>
+          <?php if (isset($v['child'])){ ?>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">列表一</a></dd>
-            <dd><a href="javascript:;">列表二</a></dd>
-            <dd><a href="javascript:;">列表三</a></dd>
-            <dd><a href="">超链接</a></dd>
+            <?php foreach ($v['child'] as $v2) { ?>
+            <dd class="<?php if($v2['id'] == $menu_id) echo 'layui-this'; ?>"><a href="1.php?menu_id=<?=$v2['id']?>">&nbsp;&nbsp;&nbsp;&nbsp;<?=$v2['name']?></a></dd>
+            <?php } ?>
           </dl>
+          <?php } ?>
         </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">解决方案</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">列表一</a></dd>
-            <dd><a href="javascript:;">列表二</a></dd>
-            <dd><a href="">超链接</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item"><a href="">云市场</a></li>
-        <li class="layui-nav-item"><a href="">发布商品</a></li>
-      </ul> -->
+        <?php } ?>
+      </ul>
     </div>
   </div>
 
+  <!-- body start -->
   <div class="layui-body">
 
 
@@ -101,7 +135,6 @@
   </span>
 </p>
 
-<!-- body start -->
 <button id="js-test" class="layui-btn">test</button>
 
 <select name="sex" id="js-sex">
@@ -149,19 +182,18 @@
   <tr><th></th></tr>
   <tr>
     <td class="img-warp" id="img-warp">
-      <img layer-src="http://api.ryzcgf.com/public/index.php/picture/index?id=1690" src="http://api.ryzcgf.com/public/index.php/picture/index?id=1690&size=120" alt=""  title="点击查看原图">
-      <img layer-src="http://api.ryzcgf.com/public/index.php/picture/index?id=1841" src="http://api.ryzcgf.com/public/index.php/picture/index?id=1841&size=120" alt="" title="点击查看原图">
+      <img layer-src="<?=$pic_url?>1690" src="<?=$pic_url?>1690&size=120" alt="1690">
+      <img layer-src="<?=$pic_url?>1841" src="<?=$pic_url?>1841&size=120" alt="1841">
     </td>
   </tr>
 </table>
-<!-- body end -->
 
-
+  <!-- body end -->
   </div>
   <!-- 底部固定区域 -->
-  <!-- <div class="layui-footer">
+  <div class="layui-footer">
     © layui.com - 底部固定区域
-  </div> -->
+  </div>
 </div>
 <!-- script -->
 <script src="<?=$cdn?>select2/4.0.0/js/select2.min.js"></script>

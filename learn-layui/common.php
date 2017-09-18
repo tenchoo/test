@@ -3,6 +3,10 @@ require_once('lib/array.php');
 require_once('lib/special.php');
 require_once('lib/view.php');
 
+function _get($v,$df=''){
+  return isset($_GET[$v]) ? $_GET[$v] : $df;
+}
+
 //
 function ajaxReturn($msg,$url='',$data = [],$time=0,$flag=false){
   $r = [];

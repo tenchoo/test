@@ -1,0 +1,20 @@
+/* skin */
+/* global var */
+.skin-box {
+  background-color: #169fe6;
+}
+.layui-header {
+  background-color: #169fe6 !important;
+}
+.layui-side {
+  background-color: #169fe6;
+}
+.layui-side .layui-nav {
+  background-color: #169fe6 !important;
+}
+.layui-side .layui-nav-child {
+  background-color: #169fe6 !important;
+}
+.layui-footer {
+  background-color: #169fe6 !important;
+}
