@@ -7,33 +7,6 @@ const UID = 2;
 $uid   = UID;
 $uinfo = ['name'=>'name1718888123','nick'=>'rainbow','avatar'=>'http://t.cn/RCzsdCq'];
 
-// 查询 所有可显示菜单/超级管理员则全部菜单 - 顶级
-$menu_all  = [
-  1=>['name'=>'控制台','url'=>'#','id'=>"1",'child'=>[
-    [
-      'name'=>'控制台1','url'=>'#','id'=>"11",
-      'child'=>[
-        ['name'=>'控制台11','url'=>'#','id'=>"111",],
-        ['name'=>'控制台12','url'=>'#','id'=>"112",],
-        ['name'=>'控制台13','url'=>'#','id'=>"113",],
-      ]
-    ],
-    [
-      'name'=>'控制台2','url'=>'#','id'=>"12",
-      'child'=>[
-        ['name'=>'控制台21','url'=>'#','id'=>"211",],
-        ['name'=>'控制台22','url'=>'#','id'=>"212",],
-      ]
-    ],
-    [
-      'name'=>'控制台3','url'=>'#','id'=>"13",
-      'child'=>[]
-    ],
-  ],],
-  2=>['name'=>'商品','url'=>'#','id'=>"2",'child'=>[]],
-  3=>['name'=>'用户','url'=>'#','id'=>"3",'child'=>[]],
-  4=>['name'=>'其他','url'=>'#','id'=>"4",'child'=>[]],
-];
 // 查询用户顶级菜单
 $top_menu_id = 1;
 $left_menu = $menu_all[$top_menu_id]['child'];
@@ -50,10 +23,14 @@ $menu_id   = _get('menu_id',0);
   <link rel="stylesheet" href="<?=$cdn?>scojs/1.0.2/css/sco.message.css">
   <link rel="stylesheet" href="<?=$cdn?>font-awesome/4.7.0/css/font-awesome.min.css">
 
+  <?php if($is_debug){ ?>
+  <link rel="stylesheet" href="<?=$css?>skin/dist/common.css" media="screen">
+  <link rel="stylesheet" href="<?=$css?>skin/dist/skin.css" media="screen">
+  <?php }else{ ?>
   <link rel="stylesheet" href="<?=$css?>common.css" media="screen">
   <link rel="stylesheet" id="style-color" href="<?=$css?>skin/df.css" media="screen">
+  <?php } ?>
   <style>
-  .hide{ display: none; }
   </style>
 
   <script src="<?=$cdn?>jquery/1.11.0/jquery.min.js"></script>
@@ -65,20 +42,11 @@ $menu_id   = _get('menu_id',0);
   <script src="<?=$js?>common.js" defer="defer"></script>
 </head>
 <body>
-
-<div class="skin-box hide">
-  <a href="#" class="skin layui-nav-img" data-skin="df" data-ref="393D49"></a>
-  <a href="#" class="skin layui-nav-img" data-skin="cyan" data-ref="2F4056"></a>
-  <a href="#" class="skin layui-nav-img" data-skin="blue" data-ref="169fe6"></a>
-  <a href="#" class="skin layui-nav-img" data-skin="green" data-ref="009688"></a>
-  <a href="#" class="skin layui-nav-img" data-skin="red" data-ref="fb6e52"></a>
-  <a href="#" class="skin layui-nav-img" data-skin="orange" data-ref="FFB800"></a>
-  <a href="#" class="skin layui-nav-img" data-skin="gray" data-ref="eeeeee"></a>
-</div>
 <div class="layui-layout layui-layout-admin">
+  <!-- 头部区域 -->
   <div class="layui-header">
     <div class="layui-logo">LOGO / SITENAME</div>
-    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <div id="js-hide-menu" class="switch-menu-wrap"><i class="fa fa-bars"></i> </div>
     <ul class="layui-nav layui-layout-left">
       <?php foreach ($menu_all as $v) { ?>
       <li class="layui-nav-item <?php if($top_menu_id== $v['id']) echo 'layui-this';?>" data-id="<?=$v['id']?>"><a href=""><?=$v['name']?></a></li>
@@ -102,17 +70,17 @@ $menu_id   = _get('menu_id',0);
     </ul>
   </div>
 
-  <div class="layui-side">
+  <!-- 左侧导航区域 -->
+  <div class="layui-side side-menu">
     <div class="layui-side-scroll">
-      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      <ul class="layui-nav layui-nav-tree" lay-filter="side-menu">
+      <ul class="layui-nav layui-nav-tree  layui-nav-side" lay-filter="side-menu">
         <?php foreach ($left_menu as $v) { ?>
         <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;"><?=$v['name']?></a>
+          <a class="" href="javascript:;"><i class="layui-icon">&#xe620;</i> <?=$v['name']?></a>
           <?php if (isset($v['child'])){ ?>
           <dl class="layui-nav-child">
             <?php foreach ($v['child'] as $v2) { ?>
-            <dd class="<?php if($v2['id'] == $menu_id) echo 'layui-this'; ?>"><a href="1.php?menu_id=<?=$v2['id']?>">&nbsp;&nbsp;&nbsp;&nbsp;<?=$v2['name']?></a></dd>
+            <dd class="<?php if($v2['id'] == $menu_id) echo 'layui-this'; ?>"><a href="<?=$v2['url']?>?menu_id=<?=$v2['id']?>">&nbsp;&nbsp;&nbsp;&nbsp;<?=$v2['name']?></a></dd>
             <?php } ?>
           </dl>
           <?php } ?>
@@ -122,10 +90,19 @@ $menu_id   = _get('menu_id',0);
     </div>
   </div>
 
-  <!-- body start -->
+  <!-- 内容主体 -->
   <div class="layui-body">
 
 
+<div class="skin-box hide">
+  <a href="#" class="skin layui-nav-img" data-skin="df" data-ref="393D49"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="cyan" data-ref="2F4056"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="blue" data-ref="169fe6"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="green" data-ref="009688"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="red" data-ref="fb6e52"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="orange" data-ref="FFB800"></a>
+  <a href="#" class="skin layui-nav-img" data-skin="gray" data-ref="eeeeee"></a>
+</div>
 <p>
   <span class="layui-breadcrumb">
     <a href="">首页</a>
@@ -167,19 +144,54 @@ $menu_id   = _get('menu_id',0);
     </div>
   </div>
 </div>
+
 <div class="layui-form">
   <div class="layui-form-item layui-input-block">
     <form>
       <input type="text" name='id' value='' class="layui-input post-form">
-      <button class="layui-btn ajax-get" href="ajax.php" >get提交</button>
+      <button class="layui-btn ajax-get confirm" href="ajax.php" >get提交</button>
       <button target-form="post-form" class="layui-btn ajax-post" href="ajax.php" >post提交</button>
       <a href="javascript:history.go(-1)" class="layui-btn layui-btn-primary ml10"><i class="aicon ai-fanhui"></i>返回</a>
     </form>
   </div>
 </div>
 
-<table>
-  <tr><th></th></tr>
+<div class="layui-row">
+  <div class="layui-col-md6">
+<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th>系统信息</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>系统版本</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>服务器环境</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>PHP/MySql版本</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ThinkPHP版本</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+  <div class="layui-col-md6">
+<table class="layui-table">
+  <tr><th>审核图片</th></tr>
   <tr>
     <td class="img-warp" id="img-warp">
       <img layer-src="<?=$pic_url?>1690" src="<?=$pic_url?>1690&size=120" alt="1690">
@@ -187,11 +199,12 @@ $menu_id   = _get('menu_id',0);
     </td>
   </tr>
 </table>
+  </div>
+</div>
 
-  <!-- body end -->
   </div>
   <!-- 底部固定区域 -->
-  <div class="layui-footer">
+  <div class="layui-footer  layui-anim layui-anim-up">
     © layui.com - 底部固定区域
   </div>
 </div>
@@ -208,6 +221,11 @@ layui.use(['layer','form','code','element'], function(){
   $ = layui.$;
   // layui.code({about:false,encode: true});
 
+  // todo : 菜单收起
+  // $('.menu-switch').click(function(){
+  //   alert();
+  //   $('.layui-side').toggleClass('side-menu');
+  // })
   // select2
   $('#js-sex').select2({
     width:100

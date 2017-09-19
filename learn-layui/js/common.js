@@ -66,18 +66,22 @@ function goTo() {
 //layui
 function myconfirm(con,call){
   con = con || '确认要执行该操作吗?';
-  call = call || function(){ };
+  call = call || function(index){ };
   return layer.open({
-    type:1,
-    closeBtn: false,
-    title: false,
-    shade: 0.8,
-    id:'unique',
-    // moveType: 0,
-    btn: ['确定','取消'],
-    shadeClose: true, //点击遮罩关闭
-    content: '\<\div style="padding:20px;">'+con+'\<\/div>',
-    yes: call
+    type:1
+    ,closeBtn: false
+    ,title: false
+    ,shade: 0.6
+    // ,resize: false
+    // ,btnAlign: 'c'
+     ,area: ['600px']
+    ,id:'unique'
+    ,moveType: 0
+    ,btn: ['确定','取消']
+    // ,moveType: 0
+    ,shadeClose: true
+    ,content: '<div style="padding: 30px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">'+con+'</div>'
+    ,yes: call
   });
 }
 
@@ -87,7 +91,6 @@ layui.use(['layer'], function(){
   // NProgress.set(0.4);
   // NProgress.inc();
   NProgress.done();
-  // myconfirm('',function(){});
 });
 /**
  * 2017-09-14 16:15:14
@@ -98,6 +101,8 @@ layui.use(['layer'], function(){
 // })();
 
 (function($, w) {
+
+  // 风格选择与事件处理
   var skinpath = './css/skin/';
   var skin = mylocal("skin");
   var menu = mylocal("current_menu");
@@ -121,15 +126,14 @@ layui.use(['layer'], function(){
         return false;
       });
     }
+    // head menu
+    $('#js-hide-menu').click(function(){
+      $('.layui-side').toggleClass('hide');
+      $('.layui-footer').toggleClass('hide');
+      $('.layui-body').toggleClass('change');
+    })
   });
 
-  // head menu
-  var top_menu_id = $('#layui-header .layui-this').data('id');
-  $('#layui-header .layui-nav-item').click(function() {
-    $this = $(this);
-    var id = $this.data('id');
-  });
-  // menu init
 
   // alertTODO error
   function alertTODO(msg) {
@@ -175,12 +179,13 @@ layui.use(['layer'], function(){
     var msg = data.msg,
     delay   = data.delay,
     url     = data.url;
-    if (1 === data.code) { // success
+    if (0 === data.code) { // success
       // var dat = data.data;
       !$(that).hasClass('no-alert') && myalert(delay ? msg + ' 页面即将自动跳转~' : msg, 1);
       !$(that).hasClass('no-refresh') && goTo(url,delay);
     } else { // error
       myalert(msg, 0);
+      !url && mylog(data.code+' : '+msg);
       url && getTo(url,delay);
     }
   }
@@ -213,8 +218,8 @@ layui.use(['layer'], function(){
     $(".normal-get").click(function(ev){
       $item = $(ev.target);
       if ($item.hasClass('confirm')) {
-        var t = myconfirm($item.data('content') || '',function() {
-          layer.close(t);
+        myconfirm($item.data('content') || '',function(index) {
+          layer.close(index);
           $(".normal-get").removeClass("confirm").click();
         });
         ev.preventDefault();
@@ -239,6 +244,7 @@ layui.use(['layer'], function(){
       }
     });
 
+    //todo : window resize
     // $(window).resize(function() {
     //   console.log("=window resize=");
     //   var width = $(".admin-main").outerWidth() - $('.admin-sidebar').outerWidth() - 30;
@@ -253,8 +259,8 @@ layui.use(['layer'], function(){
       var $item = $(item);
       var query = $item.serialize();
       if (item.hasClass('confirm')) {
-        var t = myconfirm($item.data('content') || '',function() {
-          layer.close(t);
+        myconfirm($item.data('content') || '',function(index) {
+          layer.close(index);
           sleajaxpost(query, item);
         });
       }else{
@@ -277,8 +283,8 @@ layui.use(['layer'], function(){
       var target,that = this,$this = $(this);
       if ((target = $this.attr('href')) || (target = $this.attr('url'))) {
         if ($this.hasClass('confirm')) {
-          var t = myconfirm($this.data('content') || '',function() {
-            layer.close(t);
+          myconfirm($this.data('content') || '',function(index) {
+            layer.close(index);
             ajaxget(that, target);
           });
         }else{
@@ -345,14 +351,8 @@ layui.use(['layer'], function(){
       }
 
       if ($this.hasClass('confirm')) {
-        // if(!window.config) window.config = {};
-        // window.config.ajax_post_params = {
-        //     that:that,
-        //     target:target,
-        //     query:query
-        // };
-        var t = myconfirm($that.data('content') || '',function() {
-          layer.close(t);
+        myconfirm($that.data('content') || '',function(index) {
+          layer.close(index);
           myUtils.ajaxpost(that, target, query);
         });
       } else {
@@ -363,7 +363,4 @@ layui.use(['layer'], function(){
 
     $(window).resize();
   }) //end $.ready
-
-  // $('[data-toggle="tooltip"]').tooltip();
-  // $('[data-toggle="popover"]').popover();
 })(jQuery, window);

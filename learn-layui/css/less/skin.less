@@ -10,18 +10,16 @@
 /* global var */
 @bg_color : @skin_df;
 
-* when (@bg_color = @skin_cyan) {
-  color: #666!important;
-}
+.layui-header+.layui-side+.layui-footer  when (@bg_color = @skin_cyan){ color: #666!important; }
+.layui-header+.layui-side+.layui-footer  when not (@bg_color = @skin_cyan){ color: #fff!important; }
 .skin-box{
-  background-color: @bg_color;
+  // background-color: @bg_color;
 }
+
 .layui-header{
   background-color: @bg_color !important;
 }
-.layui-side{
-  background-color: @bg_color;
-}
+.layui-nav-side{ top:60px !important; }
 .layui-side{
   .layui-nav{
     background-color: @bg_color !important;

@@ -1,5 +1,8 @@
 /* skin */
 /* global var */
+.layui-header + .layui-side + .layui-footer {
+  color: #fff!important;
+}
 .skin-box {
   background-color: #393d49;
 }
