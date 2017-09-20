@@ -1,0 +1,53 @@
+/* skin var */
+$skin_blue : #169fe6;
+$skin_cyan : #2F4056;
+$skin_df   : #393D49;
+$skin_gray : #eee;
+$skin_green : #009688;
+$skin_orange : #FFB800;
+$skin_red : #ed5564;
+
+/* global var */
+$bg_color : $skin_df;
+$hv : 5%;
+
+.layui-header a,.layui-side a,.layui-footer,.layui-logo{
+  @if $bg_color == $skin_gray {
+    color: #666!important;
+  } @else {
+    color: #fff!important;
+  }
+}
+.layui-header{
+  background-color: $bg_color !important;
+  .layui-nav-child{
+    background-color: $bg_color !important;
+    a:hover{
+      background-color: lighten($bg_color,$hv*2) !important;
+    }
+  }
+}
+.layui-side{
+  .layui-this a{
+    @if $bg_color == $skin_green {
+      background-color: #skin_df !important;
+    }
+  }
+  .layui-nav-side{
+    top:60px !important;
+  }
+  .layui-nav{
+    background-color: $bg_color !important;
+  }
+  .layui-nav-child{
+    background-color: darken($bg_color,$hv) !important;
+  }
+  .layui-nav-item>a:hover{
+    background-color: lighten($bg_color,$hv*2) !important;
+  }
+}
+.layui-body{
+}
+.layui-footer{
+  background-color: $bg_color !important;
+}

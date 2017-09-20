@@ -1,20 +1,23 @@
-/* skin */
+/* skin var */
 /* global var */
-.skin-box {
-  background-color: #eeeeee;
-}
+.layui-header a, .layui-side a, .layui-footer, .layui-logo {
+  color: #666 !important; }
+
 .layui-header {
-  background-color: #eeeeee !important;
-}
-.layui-side {
-  background-color: #eeeeee;
-}
+  background-color: #eee !important; }
+  .layui-header .layui-nav-child {
+    background-color: #eee !important; }
+    .layui-header .layui-nav-child a:hover {
+      background-color: white !important; }
+
+.layui-side .layui-nav-side {
+  top: 60px !important; }
 .layui-side .layui-nav {
-  background-color: #eeeeee !important;
-}
+  background-color: #eee !important; }
 .layui-side .layui-nav-child {
-  background-color: #eeeeee !important;
-}
+  background-color: #e1e1e1 !important; }
+.layui-side .layui-nav-item > a:hover {
+  background-color: white !important; }
+
 .layui-footer {
-  background-color: #eeeeee !important;
-}
+  background-color: #eee !important; }

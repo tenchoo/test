@@ -8,7 +8,7 @@ $js   = './js/';
 $tpl_path = '';
 $pic_url  = 'http://api.ryzcgf.com/public/index.php/picture/index?id=';
 
-$is_debug = true;
+$is_debug = false;
 
 // cache/查询 所有可显示菜单/超级管理员则全部菜单 - 顶级
 $menu_all  = [

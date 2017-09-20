@@ -46,7 +46,7 @@ $menu_id   = _get('menu_id',0);
   <!-- 头部区域 -->
   <div class="layui-header">
     <div class="layui-logo">LOGO / SITENAME</div>
-    <div id="js-hide-menu" class="switch-menu-wrap"><i class="fa fa-bars"></i> </div>
+    <a href="javascript:;" id="js-hide-menu" class="switch-menu-wrap"><i class="fa fa-bars"></i> </a>
     <ul class="layui-nav layui-layout-left">
       <?php foreach ($menu_all as $v) { ?>
       <li class="layui-nav-item <?php if($top_menu_id== $v['id']) echo 'layui-this';?>" data-id="<?=$v['id']?>"><a href=""><?=$v['name']?></a></li>
@@ -135,7 +135,7 @@ $menu_id   = _get('menu_id',0);
 <!-- script -->
 <script defer="defer">
 // page init
-layui.use(['layer','table'], function(){
+layui.use(['layer','table','element'], function(){
   mylog('page','init');
 
   var layer = layui.layer,

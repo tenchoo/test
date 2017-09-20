@@ -1,23 +1,23 @@
-/* skin */
+/* skin var */
 /* global var */
-.layui-header + .layui-side + .layui-footer {
-  color: #fff!important;
-}
-.skin-box {
-  background-color: #393d49;
-}
+.layui-header a, .layui-side a, .layui-footer, .layui-logo {
+  color: #fff !important; }
+
 .layui-header {
-  background-color: #393d49 !important;
-}
-.layui-side {
-  background-color: #393d49;
-}
+  background-color: #393D49 !important; }
+  .layui-header .layui-nav-child {
+    background-color: #393D49 !important; }
+    .layui-header .layui-nav-child a:hover {
+      background-color: #4f5566 !important; }
+
+.layui-side .layui-nav-side {
+  top: 60px !important; }
 .layui-side .layui-nav {
-  background-color: #393d49 !important;
-}
+  background-color: #393D49 !important; }
 .layui-side .layui-nav-child {
-  background-color: light(#393d49, 0.8) !important;
-}
+  background-color: #2e313b !important; }
+.layui-side .layui-nav-item > a:hover {
+  background-color: #4f5566 !important; }
+
 .layui-footer {
-  background-color: #393d49 !important;
-}
+  background-color: #393D49 !important; }

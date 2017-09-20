@@ -1,4 +1,3 @@
-runtime/
 .idea/
 dist/
 .phpintel/
@@ -6,6 +5,9 @@ dist/
 sftp-config.json
 .vscode/
 .sass-cache/
+tp5/runtime/
+tp5/vendor/
+tp5/thinkphp/
 itboye/
 !itboye/function.php
 node_modules/

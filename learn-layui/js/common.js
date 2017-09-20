@@ -86,7 +86,7 @@ function myconfirm(con,call){
 }
 
 // common init 一般直接写在一个js文件中
-layui.use(['layer'], function(){
+layui.use(['layer','element'], function(){
   mylog('common','init');
   // NProgress.set(0.4);
   // NProgress.inc();

@@ -1,20 +1,23 @@
-/* skin */
+/* skin var */
 /* global var */
-.skin-box {
-  background-color: #ffb800;
-}
+.layui-header a, .layui-side a, .layui-footer, .layui-logo {
+  color: #fff !important; }
+
 .layui-header {
-  background-color: #ffb800 !important;
-}
-.layui-side {
-  background-color: #ffb800;
-}
+  background-color: #FFB800 !important; }
+  .layui-header .layui-nav-child {
+    background-color: #FFB800 !important; }
+    .layui-header .layui-nav-child a:hover {
+      background-color: #ffc633 !important; }
+
+.layui-side .layui-nav-side {
+  top: 60px !important; }
 .layui-side .layui-nav {
-  background-color: #ffb800 !important;
-}
+  background-color: #FFB800 !important; }
 .layui-side .layui-nav-child {
-  background-color: #ffb800 !important;
-}
+  background-color: #e6a600 !important; }
+.layui-side .layui-nav-item > a:hover {
+  background-color: #ffc633 !important; }
+
 .layui-footer {
-  background-color: #ffb800 !important;
-}
+  background-color: #FFB800 !important; }

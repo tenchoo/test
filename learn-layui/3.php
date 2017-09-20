@@ -46,7 +46,7 @@ $menu_id   = _get('menu_id',0);
   <!-- 头部区域 -->
   <div class="layui-header">
     <div class="layui-logo">LOGO / SITENAME</div>
-    <div id="js-hide-menu" class="switch-menu-wrap"><i class="fa fa-bars"></i> </div>
+    <a href="javascript:;" id="js-hide-menu" class="switch-menu-wrap"><i class="fa fa-bars"></i> </a>
     <ul class="layui-nav layui-layout-left">
       <?php foreach ($menu_all as $v) { ?>
       <li class="layui-nav-item <?php if($top_menu_id== $v['id']) echo 'layui-this';?>" data-id="<?=$v['id']?>"><a href=""><?=$v['name']?></a></li>
@@ -93,6 +93,7 @@ $menu_id   = _get('menu_id',0);
   <!-- 内容主体 -->
   <div class="layui-body">
     <div class="skin-box">
+
       <a href="#" class="skin layui-nav-img" data-skin="df" data-ref="393D49"></a>
       <a href="#" class="skin layui-nav-img" data-skin="cyan" data-ref="2F4056"></a>
       <a href="#" class="skin layui-nav-img" data-skin="blue" data-ref="169fe6"></a>
@@ -101,9 +102,17 @@ $menu_id   = _get('menu_id',0);
       <a href="#" class="skin layui-nav-img" data-skin="orange" data-ref="FFB800"></a>
       <a href="#" class="skin layui-nav-img" data-skin="gray" data-ref="eeeeee"></a>
     </div>
-    <p class="layui-label">用户信息</p>
-    <label for="" class="layui-btn layui-btn-danger" id="js-dels">批量删除</label>
-    <table id="demo" lay-filter="demo"></table>
+    <fieldset class="layui-elem-field">
+      <legend>用户信息</legend>
+      <div class="layui-field-box">
+
+        <blockquote class="layui-elem-quote">注意: xxx</blockquote>
+        <label for="" class="layui-btn" id="js-add"><i class="layui-icon">&#xe654;</i> 添加</label>
+        <label for="" class="layui-btn layui-btn-danger" id="js-dels">批量删除</label>
+        <label for="" class="layui-btn layui-btn-warm" id="js-checks">批量审核</label>
+        <table id="demo" lay-filter="demo"></table>
+      </div>
+    </fieldset>
   </div>
   <!-- 底部固定区域 -->
   <div class="layui-footer layui-anim layui-anim-up">
@@ -113,7 +122,7 @@ $menu_id   = _get('menu_id',0);
 <!-- script -->
 <script defer="defer">
 // page init
-layui.use(['layer','table'], function(){
+layui.use(['layer','table','element'], function(){
   mylog('page','init');
 
   var layer = layui.layer,
@@ -122,6 +131,7 @@ layui.use(['layer','table'], function(){
 
   //执行渲染
   table.render({ elem: '#demo'
+    ,width:1100
     ,id:'demo'
     ,url: 'ajax.php'
     ,where: { token: 'sasasas', op: 'user' }
@@ -143,7 +153,7 @@ layui.use(['layer','table'], function(){
       {field: 'sign', title: '签名', width: 200}
       ,{field: 'logins', title: '登陆次数', width: 130,templet: '<div><a href="/detail/{{ d.id }}" class="layui-table-link">{{ d.logins }}</a> 次</div>'}
       ,{field: 'score', title: '得分',width: 120,edit: "text",sort:true}
-      ,{fixed: 'right', width:250, align:'center', toolbar: '#barDemo'}
+      ,{fixed: 'right', width:250, align:'left', toolbar: '#barDemo'}
     ]]
     ,done: function(res, page, count){
       //异步 res为接口返回,直接赋值 res为：{data: [], count: 99}
@@ -195,7 +205,7 @@ layui.use(['layer','table'], function(){
   //   }
   //   // mylog('op_ids',op_ids);
   // });
-  $('#js-dels').click(function(event) {
+  $('#js-dels,#js-checks').click(function(event) {
     // mylog('op_ids',op_ids);
     var cs = table.checkStatus('demo'); //test即为基础参数id对应的值
     // console.log(checkStatus.data) //获取选中行的数据
@@ -206,6 +216,12 @@ layui.use(['layer','table'], function(){
       op_ids.push(val.id);
     });
     mylog('op_ids',op_ids.join(','));
+    if(op_ids.length){
+
+    }else{
+      myalert('请先选择 !',0);
+      return false;
+    }
     // table.reload('demo');
   });
 });
@@ -218,10 +234,10 @@ layui.use(['layer','table'], function(){
   {{#  } }}
 </script>
 <script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-mini" lay-event="detail">查看</a>
-  <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
-  {{#  if(d.auth > 2){ }}
+  <a class="layui-btn layui-btn-mini" lay-event="detail"><i class="layui-icon">&#xe705;</i>查看</a>
+  <a class="layui-btn layui-btn-mini" lay-event="edit"><i class="layui-icon">&#xe642;</i>编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del"><i class="layui-icon">&#xe642;</i>删除</a>
+  {{#  if(d.id > 10005){ }}
     <a class="layui-btn layui-btn-mini" lay-event="check">审核</a>
   {{#  } }}
 </script>
