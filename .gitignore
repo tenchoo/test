@@ -8,6 +8,5 @@ sftp-config.json
 .sass-cache/
 /tp5/runtime/
 /tp5/vendor/
-!/tp5/vendor/faker/
 /tp5/thinkphp/
 /vue2_pro/
