@@ -8,12 +8,17 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
+// 一些链接的重写
 
 Route::get('think', function () {
     return 'hello,ThinkPHP5!';
 });
 
-Route::get('hello/:name', 'index/hello');
+//Route::get('hello/:name', 'index/hello');
+//Route::get('hello', 'index/index');
+
+// web.php
+//Route::get('base', 'base/index');
 
 return [
 

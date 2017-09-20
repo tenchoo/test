@@ -2,8 +2,8 @@
 
 // [ 应用入口文件 ]
 
-// 绑定当前访问到index模块
-define('BIND_MODULE','index');
+// 绑定当前访问到web模块
+define('BIND_MODULE','admin');
 
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
