@@ -31,6 +31,10 @@ html,body{ width:100%;height: 200px;overflow:hidden; }
 .layui-layout-left{
   left:230px !important;
 }
+.layui-nav{
+  padding: 0 !important;
+}
+
 //
 .layui-body{
   transition:all .2s;padding: 20px !important;

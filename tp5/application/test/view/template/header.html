@@ -1,0 +1,439 @@
+<div class="am-u-lg-12 am-u-md-12 am-padding-0">
+    <ul class="am-nav am-nav-tabs">
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn {if strstr($type,'BY_Config_')}am-btn-primary{/if}{if strstr($type,'BY_App_')}am-btn-primary{/if} am-dropdown-toggle" data-am-dropdown-toggle>APP/CONFIG<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('config/app','','')}">app配置 - BY_Config_app</a></li>
+                    <li><a href="{:url('config/version','','')}">最新版本 - BY_Config_version</a></li>
+                    <li><a href="{:url('config/position','','')}">获取position - BY_Config_position</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn {if strstr($type,'BY_User_')}am-btn-primary{/if}  {if strstr($type,'BY_Weixin_')}am-btn-primary{/if} am-dropdown-toggle"
+                        data-am-dropdown-toggle>
+                    用户接口<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('user/login','','')}">用户登录 - BY_User_login</a></li>
+                    <li><a href="{:url('user/register','','')}">用户注册 - BY_User_register</a></li>
+                    <li><a href="{:url('user/update','','')}">账户更新 - BY_User_update</a></li>
+                    <li><a href="{:url('user/findPswByMobile','','')}">手机找密 - BY_User_findPswByMobile</a></li>
+                    <li><a href="{:url('user/updatePsw','','')}">修改密码 - BY_User_updatePsw</a></li>
+                    <li><a href="{:url('user/bind','','')}">手机绑定 - BY_User_bind</a></li>
+                    <li><a href="{:url('user/changePhone','','')}">手机换绑 - BY_User_changePhone</a></li>
+                    <li><a href="{:url('user/loginByCode','','')}">验证码登陆 - BY_User_loginByCode</a></li>
+                    <li><a href="{:url('user/info','','')}">用户信息 - BY_User_info</a></li>
+                    <li><a href="{:url('user/infoByMobile','','')}">根据手机号取用户信息 - BY_User_infoByMobile</a></li>
+                    <li><a href="{:url('user/verifyApply','','')}">实名认证申请 - BY_User_verifyApply</a></li>
+                    <li><a href="{:url('user/verifyList','','')}">实名认证列表 - AM_User_verifyList</a></li>
+                    <li><a href="{:url('user/verify','','')}">实名认证审核 - AM_User_verify</a></li>
+                    <li><a href="{:url('user/verifyListBroker','','')}">经纪人认证列表 - AM_User_verifyListBroker</a></li>
+                    <li><a href="{:url('user/verifyBroker','','')}">经纪人认证审核 - AM_User_verifyBroker</a></li>
+                    <li><a href="{:url('user/suggest','','')}">意见反馈 - BY_User_suggest</a></li>
+
+                    <!-- <li><a href ="{:url('weixin/login','','')}">微信登陆 - BY_Weixin_login</a></li>
+                    <li><a href ="{:url('weixin/bind','','')}">微信绑定 - BY_Weixin_bind</a></li>
+                    <li><a href ="{:url('user/focus','','')}">用户关注 - BY_User_focus</a></li>
+                    <li><a href ="{:url('user/bindWithdraw','','')}">绑定提现账号 - BY_User_bindWithdraw</a></li>
+                    <li><a href ="{:url('user/testMoney','','')}">大富翁 - BY_User_testMoney</a></li> -->
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'BY_Message_')}am-btn-primary{/if} am-dropdown-toggle">
+                    消息/验证码<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('message/sendSms','','')}">发送手机验证码 - BY_Message_sendSms</a></li>
+                    <li><a href="{:url('message/sendUserSms','','')}">发送短信 - BY_Message_sendUserSms</a></li>
+                    <li><a href="{:url('message/checkCode','','')}">验证码验证 - BY_Message_checkCode</a></li>
+                    <li><a href="{:url('message/query','','')}">消息分页 - BY_Message_query</a></li>
+                    <li><a href="{:url('message/count','','')}">消息未读 - BY_Message_count</a></li>
+
+                    <!-- <li><a href ="{:url('message/call','','')}"      >发送私信 - BY_Message_call</a></li> -->
+                    <li><a href="{:url('message/system','','')}">发送系统消息 - BY_Message_system</a></li>
+                    <li><a href="{:url('message/delete','','')}">信息删除 - BY_Message_delete</a></li>
+                    <li><a href="{:url('message/read','','')}">信息已读 - BY_Message_read</a></li>
+                    <li><a href="{:url('message/ywRelation','','')}">云旺联系人 - BY_Message_ywRelation</a></li>
+                    <li><a href="{:url('message/ywPush','','')}">云旺私聊 - BY_Message_ywPush</a></li>
+                    <li><a href="{:url('message/ywHis','','')}">云旺私聊历史 - BY_Message_ywHis</a></li>
+                    <!-- <li><a href ="{:url('message/queryCall','','')}" >私信查询 - BY_Message_queryCall</a></li>
+                    <li><a href ="{:url('message/detailCall','','')}">私信详情 - BY_Message_detailCall</a></li>
+                    <li><a href ="{:url('message/deleteCall','','')}">私信删除 - BY_Message_deleteCall</a></li> -->
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'BY_File_')}am-btn-primary{/if} am-dropdown-toggle">
+                    附件接口<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('file/upload','','')} ">图片上传</a></li>
+                    <li><a href="{:url('file/showPic','','')}">图片查看</a></li>
+                    <li><a href="{:url('file/banner','','')} ">图片轮播 - BY_File_banner</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'BY_House_')}am-btn-primary{/if} am-dropdown-toggle">
+                    房源接口<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('house/preEdit','','')} ">房源预修改 - BY_house_preEdit</a></li>
+                    <li><a href="{:url('house/add','','')} ">房源发布 - BY_House_add</a></li>
+                    <li><a href="{:url('house/query','','')}">房源查询 - BY_House_query</a></li>
+                    <li><a href="{:url('house/detail','','')} ">房源详情 - BY_House_detail</a></li>
+                    <li><a href="{:url('house/getQueryParams','','')} ">房源查询参数 - BY_House_getQueryParams</a></li>
+                    <li><a href="{:url('house/getDtreeList','','')} ">房源数据字典 - BY_House_getDtreeList</a></li>
+                    <li><a href="{:url('house/getAreaList','','')} ">房源区域列表 - BY_House_getAreaList</a></li>
+                    <li><a href="{:url('favorites/add','','')} ">收藏和删除房源 - BY_Favorites_add</a></li>
+                    <li><a href="{:url('favorites/show','','')} ">房源收藏列表 - BY_Favorites_show</a></li>
+                    <li><a href="{:url('house/verifyApply','','')} ">房源认证申请 - BY_house_verifyApply</a></li>
+                    <li><a href="{:url('house/verify','','')} ">房源认证审核 - AM_house_verify</a></li>
+                    <li><a href="{:url('house/verifyList','','')} ">房源认证列表 - AM_house_verifyList</a></li>
+                    <li><a href="{:url('house/verifyDel','','')} ">房源认证删除 - AM_house_verifyDel</a></li>
+                    <li><a href="{:url('house/onshelf','','')} ">房源上架 - BY_house_onshelf</a></li>
+                    <li><a href="{:url('house/offshelf','','')} ">房源下架 - BY_house_offshelf</a></li>
+                    <li><a href="{:url('house/del','','')} ">房源删除 - BY_house_del</a></li>
+                    <li><a href="{:url('house/hotKey','','')} ">房源热门搜索关键词 - BY_house_hotKey</a></li>
+                    <li><a href="{:url('house/updateTime','','')} ">房东刷新房源时间 - BY_house_updateTime</a></li>
+                    <li><a href="{:url('house/communityRateChart','','')} ">小区价格走势 - BY_house_communityRateChart</a></li>
+                    <li><a href="{:url('house/searchArea','','')} ">小区搜索 - BY_house_searchArea</a></li>
+                    <li><a href="{:url('house/wanted','','')} ">发布求租PC - BY_house_house_wanted</a></li>
+                    <li><a href="{:url('house/updateWanted','','')} ">修改求租PC - BY_House_updateWanted</a></li>
+                    <li><a href="{:url('house/wantedList','','')} ">求租列表PC - BY_House_wantedList</a></li>
+                    <li><a href="{:url('house/deleteWanted','','')} ">删除求租PC - BY_House_deleteWanted</a></li>
+                    <li><a href="{:url('house/publishManage','','')} ">发布房源查询管理高级版PC - BY_House_publishManage</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'BY_Rent_')}am-btn-primary{/if} am-dropdown-toggle">
+                    签约申请<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Rent/rent','','')} ">我的签约申请&取消 - BY_Rent_rent</a></li>
+                    <li><a href="{:url('Rent/query','','')} ">签约申请房源列表 - BY_Rent_query</a></li>
+                    <li><a href="{:url('House/lend','','')} ">房东房源列表 - BY_House_lend</a></li>
+                    <li><a href="{:url('Rent/rentapply','','')} ">签约申请租客列表 - BY_Rent_rentapply</a></li>
+                    <li><a href="{:url('Rent/applydone','','')} ">已通过申请租客详情 - BY_Rent_applydone</a></li>
+                    <li><a href="{:url('Rent/select','','')} "> 通过签约申请- BY_Rent_select</a></li>
+                    <li><a href="{:url('Rent/queryview','','')} ">看房申请房源列表 - BY_Rent_queryview</a></li>
+                    <li><a href="{:url('Rent/rentview','','')} ">看房&取消看房 - BY_Rent_rentview</a></li>
+                    <li><a href="{:url('Rent/rentapplyview','','')} ">看房申请租客列表 - BY_Rent_rentapplyview</a></li>
+                    <li><a href="{:url('Rent/selectview','','')} "> 通过&作废看房申请- BY_Rent_selectview</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'BY_Repair_')}am-btn-primary{/if} am-dropdown-toggle">
+                    维修服务<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Repair/add','','')} ">添加&删除维修项目 - BY_Repair_add</a></li>
+                    <li><a href="{:url('Repair/addworker','','')} ">添加&删除维修师傅 - BY_Repair_addworker</a></li>
+                    <li><a href="{:url('Repair/addworkerpic','','')} ">添加师傅头像 - BY_Repair_addworkerpic</a></li>
+                    <li><a href="{:url('Repair/query','','')} "> 查看维修申请列表- BY_Repair_query</a></li>
+                    <li><a href="{:url('Repair/mate','','')} "> 查询维修师傅- BY_Repair_mate</a></li>
+                    <li><a href="{:url('Repair/send','','')} "> 委派维修师傅- BY_Repair_send</a></li>
+                    <li><a> ##################</a></li>
+                    <li><a href="{:url('Repair/show','','')} "> 查看维修信息(后台用)- BY_Repair_show</a></li>
+                    <li><a href="{:url('Repair/addapply','','')} "> 维修申请&取消申请- BY_Repair_addapply</a></li>
+                    <li><a href="{:url('Repair/look','','')} "> 查看维修状态- BY_Repair_look</a></li>
+                    <li><a href="{:url('Repair/findtags','','')} "> 查看师傅评价标签- BY_Repair_findtags</a></li>
+                    <li><a href="{:url('Repair/arrive','','')} "> 师傅已到- BY_Repair_arrive</a></li>
+                    <li><a href="{:url('Repair/tranmoney','','')} "> 修改金额- BY_Repair_tranmoney</a></li>
+                    <li><a href="{:url('Repair/endapply','','')} "> 结束维修- BY_Repair_endapply</a></li>
+                    <li><a href="{:url('Repair/evaluate','','')} "> 评价维修- BY_Repair_evaluate</a></li>
+                    <li><a href="{:url('Repair/canpay','','')} "> 可以支付了- BY_Repair_canpay</a></li>
+                    <li><a href="{:url('Repair/addlock','','')} "> 预约装锁- BY_Repair_addlock</a></li>
+                    <li><a href="{:url('Repair/setlockinfo','','')} "> 获取智能锁信息- BY_Repair_setlockinfo</a></li>
+                    <li><a href="{:url('Repair/addressList','','')} "> 维修地址列表- BY_Repair_addressList</a></li>
+
+                    <!--<li><a href="{:url('Repair/paylist','','')} "> 支付维修费用- BY_Repair_paylist</a></li>
+                    <li><a href="{:url('Repair/payshow','','')} "> 支付详情- BY_Repair_payshow</a></li>
+                    <li><a href="{:url('Repair/order','','')} "> 生成维修支付订单- BY_Repair_order</a></li>
+                    <li><a href="{:url('Repair/payshowlist','','')} "> 查看生成维修支付订单- BY_Repair_payshowlist</a></li>-->
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'BY_Contract_')}am-btn-primary{/if} am-dropdown-toggle">
+                    签约/合同<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Contract/selectRenter')}">房东选择租客 - BY_Contract_selectRenter</a></li>
+                    <li><a href="{:url('Contract/contractManage')}">签约管理 - BY_Contract_contractManage</a></li>
+                    <li><a href="{:url('Contract/getParams')}">房东/房客 获取合同填写参数 - BY_Contract_getParams</a></li>
+                    <li><a href="{:url('Contract/write')}">房东/房客 填写合同 - BY_Contract_write</a></li>
+                    <li><a href="{:url('Contract/confirm')}">房东/房客 确认合同 - BY_Contract_confirm</a></li>
+                    <li><a href="{:url('Contract/Detail')}">签约详情 - BY_Contract_detail</a></li>
+                    <li><a href="{:url('Contract/payRental')}">房租支付 - BY_Contract_payRental</a></li>
+                    <li><a href="{:url('Contract/terminateApply')}">申请终止合同-房客 - BY_Contract_terminateApply</a></li>
+                    <li><a href="{:url('Contract/passTerminate')}">通过终止合同申请 - BY_Contract_passTerminate</a></li>
+                    <li><a href="{:url('Contract/confirmFacility')}">确认资产清单 - BY_Contract_confirmFacility</a></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'BY_Pay_')}am-btn-primary{/if} am-dropdown-toggle">
+                    支付/余额<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <!--<li><a href="{:url('Pay/getPayInfo')}">预/再支付 - BY_Pay_getPayInfo</a></li>-->
+                    <li><a href="{:url('Pay/payInfo')}">发起支付 - BY_Pay_payInfo</a></li>
+                    <li><a href="{:url('Pay/rfpay')}">发起rf支付 - BY_Pay_rfpay</a></li>
+                    <li><a href="{:url('Pay/rfpaySendSms')}">rf支付发送验证码 - BY_Pay_rfpaySendSms</a></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'_Sciener')}am-btn-primary{/if} am-dropdown-toggle">
+                    智能门锁V3-账号/锁<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Sciener/reg','','')} ">
+                    注册默认科技侠 - BY_ScienerV3_reg</a></li>
+                    <li><a href="{:url('Sciener/bind','','')} ">
+                    绑定已有科技侠 - BY_ScienerV3_bind</a></li>
+                    <li><a href="{:url('Sciener/unbind','','')} ">
+                    删除账号绑定 - BY_ScienerV3_unbind</a></li>
+
+                    <li><a href="{:url('Sciener/init','','')} ">
+                    *锁初始化 - BY_ScienerV3_init</a></li>
+                    <li><a href="{:url('Sciener/lock','','')} ">
+                    名下锁 - BY_ScienerV3_lock</a></li>
+                    <li><a href="{:url('Sciener/ifPush','','')} ">
+                    锁推送开关 - BY_ScienerV3_ifPush</a></li>
+                    <li><a href="{:url('Sciener/edit','','')} ">
+                    修改锁信息 - BY_ScienerV3_edit</a></li>
+                    <li><a href="{:url('Sciener/auth','','')} ">
+                    锁授权与取消 - BY_ScienerV3_auth</a></li>
+                    <li><a href="{:url('Sciener/listUser','','')} ">
+                    锁用户列表 - AM_ScienerV3_listUser</a></li>
+                    <li><a href="{:url('Sciener/listRecord','','')} ">
+                    开锁记录 - BY_ScienerV3_listRecord</a></li>
+                    <li><a href="{:url('Sciener/unlock','','')} ">
+                    *上传开锁记录 - BY_ScienerV3_unlock</a></li>
+                    <li><a href="{:url('Sciener/lowPower','','')} ">
+                    锁低电量 - BY_ScienerV3_lowPower</a></li>
+                    <li><a href="{:url('Sciener/bindHouse','','')} ">
+                    锁绑定房源 - BY_ScienerV3_bindHouse</a></li>
+                    <li><a href="{:url('Sciener/unbindHouse','','')} ">
+                    锁解绑房源 - BY_ScienerV3_unbindHouse</a></li>
+                    <li><a href="{:url('Sciener/getOpenId','','')} ">
+                    获取openId - BY_ScienerV3_getOpenId</a></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'_Sciener')}am-btn-primary{/if} am-dropdown-toggle">
+                    智能门锁V3-钥匙/密码<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Sciener/listKey','','')} ">
+                    锁钥匙列表 - BY_ScienerV3_listKey</a></li>
+                    <li><a href="{:url('Sciener/listUserKey','','')} ">
+                    用户钥匙列表 - BY_ScienerV3_listUserKey</a></li>
+                    <li><a href="{:url('Sciener/syncUserKey','','')} ">
+                    同步用户钥匙 - BY_ScienerV3_syncUserKey</a></li>
+                    <li><a href="{:url('Sciener/sendKey','','')} ">
+                    发送钥匙 - BY_ScienerV3_sendKey</a></li>
+                    <li><a href="{:url('Sciener/deleteKey','','')} ">
+                    删除钥匙 - BY_ScienerV3_deleteKey</a></li>
+                    <li><a href="{:url('Sciener/lockKey','','')} ">
+                    冻结钥匙 - BY_ScienerV3_lockKey</a></li>
+                    <li><a href="{:url('Sciener/unlockKey','','')} ">
+                    解冻钥匙 - BY_ScienerV3_unlockKey</a></li>
+                    <li><a href="{:url('Sciener/resetAllKey','','')} ">
+                    *重置用户钥匙 - BY_ScienerV3_resetAllKey</a></li>
+                    <li><a href="{:url('Sciener/deleteAllKey','','')} ">
+                    删除用户钥匙 - BY_ScienerV3_deleteAllKey</a></li>
+                    <li><a href="{:url('Sciener/changePeriod','','')} ">
+                    修改钥匙有效期 - BY_ScienerV3_changePeriod</a></li>
+
+                    <li><a href="{:url('Sciener/getKeyboardPwdVersion','','')} ">
+                    获取键密版本 - BY_ScienerV3_getKeyboardPwdVersion</a></li>
+                    <li><a href="{:url('Sciener/listKeyboardLog','','')} ">
+                    键盘密码发送记录 - BY_ScienerV3_listKeyboardLog</a></li>
+                    <li><a href="{:url('Sciener/getKeyboardPwd','','')} ">
+                    发送键盘密码 - BY_ScienerV3_getKeyboardPwd</a></li>
+                    <li><a href="{:url('Sciener/resetKeyboardPwd','','')} ">
+                    *重置用户键盘密码 - BY_ScienerV3_resetKeyboardPwd</a></li>
+                    <li><a href="{:url('Sciener/deleteKeyboardPwd','','')} ">
+                    *删除键盘密码 - BY_ScienerV3_deleteKeyboardPwd</a></li>
+                    <li><a href="{:url('Sciener/addKeyboardPwd','','')} ">
+                    *添加键盘密码 - BY_ScienerV3_addKeyboardPwd</a></li>
+                    <li><a href="{:url('Sciener/changeKeyboardPwd','','')} ">
+                    *修改键盘密码 - BY_ScienerV3_changeKeyboardPwd</a></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'BY_Wallet')}am-btn-primary{/if} am-dropdown-toggle">
+                    余额/钱包<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Wallet/balance','','')} ">钱包余额 - BY_Wallet_balance</a></li>
+                    <li><a href="{:url('Wallet/updatePsw','','')} ">修改支付密码 - BY_Wallet_updatePsw</a></li>
+                    <li><a href="{:url('Wallet/checkPsw','','')} ">验证支付密码 - BY_Wallet_checkPsw</a></li>
+                    <li><a href="{:url('Wallet/bindBankCard','','')} ">绑定银行卡 - BY_Wallet_bindBankCard</a></li>
+                    <li><a href="{:url('Wallet/getBank','','')} ">获取银行卡号银行 - BY_Wallet_getBank</a></li>
+                    <li><a href="{:url('Wallet/bankCardList','','')} ">已绑定的银行卡列表 - BY_Wallet_bankCardList</a></li>
+                    <li><a href="{:url('Wallet/deleteBankCard','','')} ">银行卡解绑 - BY_Wallet_deleteBankCard</a></li>
+                    <li><a href="{:url('Wallet/withdraw','','')} ">提现申请 - BY_Wallet_withdraw</a></li>
+                    <li><a href="{:url('Wallet/transfer','','')} ">钱包转账 - BY_Wallet_transfer</a></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'AM_')}am-btn-primary{/if} am-dropdown-toggle">
+                    admin核心<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('User/amlogin','','')} ">AM登陆 - BY_User_amlogin</a></li>
+                    <li><a href="{:url('DataObjectType/view','','')} ">查看对象类型 - AM_DataObjectType_view</a></li>
+                    <li><a href="{:url('DataObjectType/add','','')} ">添加对象类型 - AM_DataObjectType_add</a></li>
+                    <li><a href="{:url('DataObject/view','','')} ">查看对象 - AM_DataObject_view</a></li>
+                    <li><a href="{:url('DataObject/add','','')} ">添加对象 - AM_DataObject_add</a></li>
+                    <li><a href="{:url('Resource/view','','')} ">查看资源 - AM_Resource_view</a></li>
+                    <li><a href="{:url('Resource/add','','')} ">添加资源 - AM_Resource_add</a></li>
+                    <li><a href="{:url('Resource/menu','','')} ">查看菜单 - AM_Resource_menu</a></li>
+                    <li><a href="{:url('Operator/view','','')} ">查看操作 - AM_Operator_view</a></li>
+                    <li><a href="{:url('Operator/add','','')} ">添加操作 - AM_Operator_add</a></li>
+                    <li><a href="{:url('FunctionPrivilege/view','','')} ">查看对象功能 - AM_FunctionPrivilege_view</a></li>
+                    <li><a href="{:url('FunctionPrivilege/set','','')} ">配置对象功能 - AM_FunctionPrivilege_set</a></li>
+                    <li><a href="{:url('Role/view','','')} ">查看角色 - AM_Role_view</a></li>
+                    <li><a href="{:url('Role/add','','')} ">添加角色 - AM_Role_add</a></li>
+                    <li><a href="{:url('Role/edit','','')} ">修改角色 - AM_Role_edit</a></li>
+                    <li><a href="{:url('Role/del','','')} ">删除角色 - AM_Role_del</a></li>
+                    <li><a href="{:url('UserRole/view','','')} ">查看用户角色 - AM_UserRole_view</a></li>
+                    <li><a href="{:url('UserRole/set','','')} ">配置用户角色 - AM_UserRole_set</a></li>
+                    <li><a href="{:url('RolePrivilege/view','','')} ">查看角色权限 - AM_RolePrivilege_view</a></li>
+                    <li><a href="{:url('RolePrivilege/set','','')} ">配置角色权限 - AM_RolePrivilege_set</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'_Org_')}am-btn-primary{/if} am-dropdown-toggle">
+                    组织机构<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Org/regApply','','')} ">申请注册 - BY_Org_regApply</a></li>
+                    <li><a href="{:url('Org/regList','','')} ">申请列表 - AM_Org_regList</a></li>
+                    <li><a href="{:url('Org/regVerify','','')} ">申请审核/删除 - AM_Org_regVerify</a></li>
+                    <li><a href="{:url('Org/add','','')} ">添加(暂) - BY_Org_add</a></li>
+                    <li><a href="{:url('Org/addChild','','')} ">添加下级机构 - BY_Org_addChild</a></li>
+                    <li><a href="{:url('Org/setMember','','')} ">设置机构成员 - BY_Org_setMember</a></li>
+                    <li><a href="{:url('Org/del','','')} ">删除机构 - BY_Org_del</a></li>
+                    <li><a href="{:url('Org/view','','')} ">查看下级机构 - BY_Org_view</a></li>
+                    <li><a href="{:url('Org/setAdmin','','')} ">设置机构管理员 - BY_Org_setAdmin</a></li>
+                    <li><a href="{:url('Org/member','','')} ">查看机构成员 - BY_Org_member</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'_Datatree_')}am-btn-primary{/if} am-dropdown-toggle">
+                    数据字典<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Datatree/child','','')} ">子一级查询 - BY_Datatree_child</a></li>
+                 </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'_Qianmi_')}am-btn-primary{/if} am-dropdown-toggle">
+                    千米生活<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Qianmi/rechargeMobile','','')} ">手机话费充值 - BY_Qianmi_rechargeMobile</a></li>
+                    <li><a href="{:url('Qianmi/itemList','','')} ">水电煤商品查询 - BY_Qianmi_itemList</a></li>
+                    <li><a href="{:url('Qianmi/waterCoal','','')} ">水电煤代缴 - BY_Qianmi_waterCoal</a></li>
+                    <li><a href="{:url('Qianmi/updateCharge','','')} ">更新充值状态 - BY_Qianmi_updateCharge</a></li>
+                    <li><a href="{:url('Qianmi/waterCoalInfo','','')} ">查询水电煤欠费[todo] - BY_Qianmi_waterCoalInfo</a></li>
+                    <li><a href="{:url('Qianmi/payBill','','')} ">发起千米支付 - BY_Qianmi_payBill</a></li>
+                    <li><a href="{:url('Qianmi/refund','','')} ">退款 - BY_Qianmi_refund</a></li>
+                    <li><a href="{:url('Qianmi/getInfo','','')} ">查询欠费 - BY_Qianmi_getInfo</a></li>
+                    <li><a href="{:url('Qianmi/propsList','','')} ">商品属性 - BY_Qianmi_propsList</a></li>
+                 </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'_P2p_')}am-btn-primary{/if} am-dropdown-toggle">
+                    P2P(定期)<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('P2p/query','','')} ">列表 - BY_P2p_query</a></li>
+                    <li><a href="{:url('P2p/item','','')} ">详情 - BY_P2p_item</a></li>
+                    <li><a href="{:url('P2p/payBackDue','','')} ">回款计划 - BY_P2p_payBackDue</a></li>
+                    <li><a href="{:url('P2p/invest','','')} ">投资 - BY_P2p_invest</a></li>
+                    <li><a href="{:url('P2p/lender','','')} ">投资记录 - BY_P2p_lender</a></li>
+                    <li><a href="{:url('P2p/myInvest','','')} ">我的投资 - BY_P2p_myInvest</a></li>
+                    <li><a href="{:url('P2p/transfer','','')} ">发布转让 - BY_P2p_transfer</a></li>
+                 </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'_Financial_')}am-btn-primary{/if} am-dropdown-toggle">
+                    租金宝(活期)<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Financial/query','','')} ">列表 - BY_Financial_query</a></li>
+                    <li><a href="{:url('Financial/item','','')} ">详情 - BY_Financial_item</a></li>
+                    <li><a href="{:url('Financial/index','','')} ">首页 - BY_Financial_index</a></li>
+                    <li><a href="{:url('Financial/buy','','')} ">投资 - BY_Financial_buy</a></li>
+                    <li><a href="{:url('Financial/takeout','','')} ">取出投资 - BY_Financial_takeout</a></li>
+                    <li><a href="{:url('Financial/payment','','')} ">利息记录 - BY_Financial_payment</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn  {if strstr($type,'_Loan_')}am-btn-primary{/if} am-dropdown-toggle">
+                    贷款(Loan)<span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{:url('Loan/current','','')} ">当前贷款 - BY_Loan_current</a></li>
+                    <li><a href="{:url('Loan/address','','')} ">设置通讯录 - BY_Loan_address</a></li>
+                    <li><a href="{:url('Loan/history','','')} ">贷款历史 - BY_Loan_history</a></li>
+                    <li><a href="{:url('Loan/plan','','')} ">还款详情 - BY_Loan_plan</a></li>
+                </ul>
+            </div>
+        </li>
+
+    </ul>
+</div>

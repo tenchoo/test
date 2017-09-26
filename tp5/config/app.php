@@ -12,15 +12,183 @@
 // +----------------------------------------------------------------------
 // | 应用设置
 // +----------------------------------------------------------------------
-
+const ITBOYE_CDN = 'http://cdn.my/';
 return [
+
+    //全局的接口配置信息
+    'by_api_config'=>[
+        'alg'=>'md5_v3',
+        'client_id'=>'by571846d03009e1',
+        'client_secret'=>'964561983083ac622f03389051f112e5',
+        'api_url'=>'http://tp51/index.php',
+        'debug'=>false
+    ],
+    // 应用模式状态
+    // "app_status" => 'local_rainbow',
+    //地址配置
+    'site_url'=>'http://tp51', //ueditor
+    'api_url'=>'http://tp51/index.php',
+    'avatar_url'=>'http://tp51/index.php/picture/avatar',
+    'picture_url'=>'http://tp51/index.php/picture/index?id=',
+    'file_curl_upload_url'=>'http://tp51/index.php/file/curl_upload',
+    'upload_path'=>'http://tp51/',
+
+    //百度地图ak
+    'baidu_map_ak' =>'NB4fAMqntPrs1RSGkTXBzjK9FVCMx9ix',//300w/d
+    //数据字典
+    'datatree'=>[
+        'grade'       =>6215, //年级
+        'repair_type' =>6167, //维修类型
+        'vehicle_type'=>6170, //车辆类型
+        'worker_skill' =>6166, //技工技能
+        "account_type" =>6178, //提现账号类型
+        'STORE_TYPE' => 2,
+        'GOODSUNIT' =>37,           //计算单位
+        'COUNTRY' =>35,             //国家
+        'PRODUCT_MAIN_IMG' => 6015, //商品主图
+        'PRODUCT_SHOW_IMG' => 6016, //商品轮播图
+        'WXPRODUCTGROUP' => 13,     //商品分组
+        'BANNERS_TYPE' => 17,       //Banners类别
+
+        'SHOP_INDEX_BANNERS'=>18, //商城首页轮播图片
+
+        'RED_ENVOLOPE_TYPE'=>6018,//红包类型
+        'RED_TEN_PERCENT'=>6021,//支付返10%红包
+
+        'COUPON_TYPE'=>6132,//优惠券类型
+
+        'POST_CATEGORY' => 21,//文章分类
+        'HELP_POST_CATEGORY' => 6081,//帮助中心分类
+        'HELP_APP_POST_CATEGORY' => 6165, //APP帮助中心文章分类
+
+        'BBS_BANNERS_TYPE' => 6056,//论坛Banners类别
+        'BANNERS_URL_TYPE'=>6069,//banners跳转链接类型
+        'BANNER_SCORESHOP_INDEX'=>6137,//积分商城首页轮播
+
+        'QUANTITY_SALE_OUT'=>6076, //库存变动类型，卖出
+        'QUANTITY_TYPE'=>6186,//库存变动类型
+
+        'WALLET_PAY_GOODS'  => 6148, //余额支付商品
+        'WALLET_PAY_SGOODS' => 6149, //余额支付积分商品
+        'WALLET_WITHDRAW'   =>32,//余额提现
+        'WALLET_AFTERSALE'  =>6157,//余额提现
+    ],
+    //验证码配置
+    'code_cfg'=>[
+        'type'=>'local', //local:本地弹窗 qcloud: 腾讯云 juhe: 聚合
+        'extra'=>[
+            //腾讯云配置
+//            'sdk_app_id'=>"1400018532",
+//            "app_key"=>"18d087393ef7df76214d5f6ec087a5ba"
+            //聚合配置
+            "key"=>"b771aa8f615679f52990ce44ad2d9042"
+        ]
+    ],
+
+    //阿里百川
+    'alibaichuan_cfg'=>[
+        'is_debug'   => true,//是否测试
+        'app_key'    => '23500185',
+        'app_secret' => 'b7f5a4c77e7e91f5266d1f9ea7468874',
+    ],
+    //支持的支付方式
+    'app_support_payways'=>[
+        ['name'=>'支付宝','type'=>1,'desc'=>'需要手机安装支付宝'],
+        ['name'=>'Paypal','type'=>2,'desc'=>'支持paypal'],
+        ['name'=>'微信支付','type'=>3,'desc'=>'需要手机安装微信'],
+        ['name'=>'余额支付','type'=>4,'desc'=>'钱包余额支付'],
+    ],
+
+    //多语言支持
+    'lang_support'=>[
+        ['name'=>'简体中文','value'=>'zh-cn'],
+        ['name'=>'한국','value'=>'ko'],
+        ['name'=>'English','value'=>'en'],
+        ['name'=>'Tiếng Việt','value'=>'vi'],
+    ],
+
+    //融丰支付配置
+    // 'rf_pay_config'=>[
+    //     //接口地址
+    //     'api_url'=> "http://api.ktb.wujieapp.net",
+    //     //
+    //     'org_no'=> "99999999",
+    //     'mer_no'=> "101607256868749",
+    //     //
+    //     'key'=> "bea91d7d61ecd36fcabfd4303c75a06f",
+    //     //rsa私钥 base64形式
+    //     'pem_path'=> "/www/wwwroot/api.guannan.com/application/src/rfpay/pem/base64.pem",
+    //     //订单创建成功后的回调地址
+    //     "no_card_order_backUrl"=>"http://api.ihomebank.com/public/index.php/rfpay"
+    // ],
+
+    // 加密salt定义
+    'security_salt'=> [
+        'password'=>'itboyep;[230',
+    ],
+    //分页配置
+    'paginate'               => [
+        'type'      => 'bootstrap',
+        'var_page'  => 'page',
+        'list_rows' => 15,
+    ],
+
+    //队列
+    'queue'=>[
+        'type'=>'database', //驱动类型，可选择 sync(默认):同步执行，database:数据库驱动,redis:Redis驱动,topthink:Topthink驱动
+        //或其他自定义的完整的类名
+        'table' => 'queue_jobs'
+    ],
+    /* 音频上传相关配置 */
+    'user_audio_upload' =>[
+        'mimes'    => '', //允许上传的文件MiMe类型
+        'maxSize'  => 5120*1024, //上传的文件大小限制 (不大于0或者不填-不做限制)
+        'exts'     => 'mp3', //必填,允许上传的文件
+        // 'autoSub'  => true, //自动子目录保存文件
+        'subName'  => ['date', 'Ymd'], //必填,子目录创建方式，[0]-函数名，[1]-参数，多个参数使用数组
+        'rootPath' => './upload/userAudio/',
+    ],
+    /* 音频上传驱动 */
+    'audio_upload_driver'=>'local',
+    /* 图片上传相关配置 */
+    'user_picture_upload' => [
+//上传公用配置
+        'mimes'    => '', //允许上传的文件MiMe类型
+        'maxSize'  => 500*1024, //上传的文件大小限制 (不大于0或者不填-不做限制)
+        'exts'     => 'jpg,gif,png,jpeg', //必填,允许上传的文件
+        // 'autoSub'  => true, //自动子目录保存文件
+        'subName'  => ['date', 'Ymd'], //必填,子目录创建方式，[0]-函数名，[1]-参数，多个参数使用数组
+        'rootPath' => './upload/userPicture/', //必填,保存根路径
+
+//新版上传配置
+        // 'house_rate' => [4,3],//房源图片比例4:3
+
+//一下为兼容curl_upload的老版配置
+        // 'savePath' => '',
+        //curl使用 - 保存路径 eg: '1/'
+        // 'saveName' => ['uniqid', ''], //上传文件命名规则，[0]-函数名，[1]-参数，多个参数使用数组
+        // 'saveExt'  => '',//文件保存后缀，空则使用原后缀
+        'replace'  => true,//存在同名是否覆盖
+        'hash'     => true,//是否生成hash编码
+    ],
+    //图片上传相关配置（文件上传类配置）
+    'picture_upload_driver'=>'local',
+
+    //阿里百川
+    // 'ALBAICHUAN_CFG'=>[
+    //     'is_debug'   => true,//是否测试
+    //     'app_key'    => '23456139',
+    //     'app_secret' => '4647cb9e09046b8ef8e56c5aa5f95a61',
+    // ]
+
+
 
     // 应用调试模式
     'app_debug'              => true,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
-    'app_status'             => '',
+    'app_status'             => 'local_rainbow', // 1:local_rainbow 2:''
     // 是否支持多模块
     'app_multi_module'       => true,
     // 入口自动绑定模块
@@ -40,7 +208,7 @@ return [
     // 是否开启多语言
     'lang_switch_on'         => false,
     // 默认全局过滤方法 用逗号分隔多个
-    'default_filter'         => '',
+    'default_filter'         => 'trim,htmlspecialchars',
     // 默认语言
     'default_lang'           => 'zh-cn',
     // 应用类库后缀
@@ -114,6 +282,5 @@ return [
     // 显示错误信息
     'show_error_msg'         => false,
     // 异常处理handle类 留空使用 \think\exception\Handle
-    'exception_handle'       => '',
-
+    'exception_handle'       => ''
 ];

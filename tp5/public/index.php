@@ -1,13 +1,11 @@
 <?php
 
 // [ 应用入口文件 ]
-
 // 绑定当前访问到index模块
 define('BIND_MODULE','index');
-
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
-
+define('POWER','xxx');
 // define('RUNTIME_PATH',__DIR__ . '/../runtime/');
 
 // 开始运行时间和内存使用

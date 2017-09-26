@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="{:config('site_url')}/" />
+  <meta charset="UTF-8">
+  <title> {$seo.title ?? L('TITLE')}-{:config('website_title')} </title>
+  <link rel="stylesheet" href="__CDN__layui/2.1.3/css/layui.css">
+  <link rel="stylesheet" href="__CDN__nprogress/nprogress.css">
+  <link rel="stylesheet" href="__CDN__select2/4.0.0/css/select2.min.css">
+  <link rel="stylesheet" href="__CDN__scojs/1.0.2/css/sco.message.css">
+  <link rel="stylesheet" href="__CDN__font-awesome/4.7.0/css/font-awesome.min.css">
+
+  {if if condition ="IS_DEBUG" }
+  <link rel="stylesheet" href="__CSS__skin/dist/common.css" media="screen">
+  <link rel="stylesheet" href="__CSS__skin/dist/skin.css" media="screen">
+  {else /}
+  <link rel="stylesheet" href="__CSS__common.css" media="screen">
+  <link rel="stylesheet" id="style-color" href="__CSS__skin/df.css" media="screen">
+  {/if}
+  <style>
+  </style>
+
+  <script src="__CDN__jquery/1.11.0/jquery.min.js"></script>
+  <script src="__CDN__layui/2.1.3/layui.js"></script><!-- 按需加载 -->
+  <script src="__CDN__nprogress/nprogress.js"></script>
+  <script src="__CDN__scojs/1.0.2/js/sco.modal.js"></script>
+  <script src="__CDN__scojs/1.0.2/js/sco.message.js"></script>
+  <script src="__CDN__scojs/1.0.2/js/sco.confirm.js"></script>
+  <script src="__JS__common.js" defer="defer"></script>
+
+  {block name="area_header"}
+    <!--顶部区域 -->
+  {/block}
+  <!--[if lt IE 9]>
+  <script type="text/javascript" src="__CDN__/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+  <!-- 头部区域 -->
+  <div class="layui-header">
+    <div class="layui-logo">LOGO / SITENAME</div>
+    <a href="javascript:;" id="js-hide-menu" class="switch-menu-wrap"><i class="fa fa-bars"></i> </a>
+    <ul class="layui-nav layui-layout-left">
+      {volist name="_top_menu" id="v"}
+      <li class="layui-nav-item {eq name='_top_mid' value='$v.id'}layui-this{/eq}" data-id="{$v.id}"><a href="{:url($v.url,['_top_mid'=>$v.id])}">{$v.name ?? '...'}</a></li>
+      {/volist}
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item"><a href="javascript:;" class=""> <i class="fa fa-bell" style="position: relative;top:3px;font-size: 22px;"></i><i class="layui-badge">5</i> </a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="{:url('index/picture/avatar',['id'=>$_uinfo.id,'size'=>80])}" class="layui-nav-img">
+          {$_uinfo.nickname}
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="{:url('index/logout')}" class="ajax-get">退了</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;" id="admin-fullscreen"><i class="fa fa-arrows-alt"></i> <span class="admin-fullText">全屏</span> </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 左侧导航区域 -->
+  <div class="layui-side side-menu">
+    <div class="layui-side-scroll">
+      <ul class="layui-nav layui-nav-tree layui-nav-side" lay-filter="side-menu">
+        {volist name="_left_menu" id="v"}
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;"><i class="layui-icon">&#xe620;</i> {$v.name}</a>
+          {notempty name="v.child"}
+          <dl class="layui-nav-child">
+            {volist name="v.child" id="v2"}
+            <dd class="{eq name='v2.id' value='$_left_mid'}layui-this{/eq}"><a href="{:url($v2.url,['_top_mid'=>$_top_mid,'_left_mid'=>$v2.id])}">&nbsp;&nbsp;&nbsp;&nbsp;{$v2.name}</a></dd>
+            {/volist}
+          </dl>
+          {/notempty}
+        </li>
+        {/volist}
+      </ul>
+    </div>
+  </div>
+
+  <!-- 内容主体 -->
+  <div class="layui-body">
+  {block name="area_body"}
+    <!--内容区域 -->
+  {/block}
+  </div>
+  <!-- 底部固定区域 -->
+  <div class="layui-footer  layui-anim layui-anim-up">
+    © layui.com - 底部固定区域
+  </div>
+  {block name="area_footer"}
+  {/block}
+</div>
+  </body>
+</html>
