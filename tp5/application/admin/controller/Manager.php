@@ -21,15 +21,15 @@ class Manager extends Admin
 
     //首页
     public function index(){
-        $this->assign('_top_mid',AdminSessionHelper::getCurrentActiveTopMenuId());
-        $this->assign('_left_mid',AdminSessionHelper::getCurrentActiveLeftMenuId());
+        // $this->assign('_top_mid',AdminSessionHelper::getCurrentActiveTopMenuId());
+        // $this->assign('_left_mid',AdminSessionHelper::getCurrentActiveLeftMenuId());
         // halt(IS_DEBUG);
         // if($this->isMobile){
         //     return $this->boye_display();
         // }
         // return $this->boye_display("learun");
         // halt($this->view->seo); //seo cfg _menuList by_skin user
-        return $this->fetch('new/index/index');
+        return $this->show('index/index');
     }
 
     //介绍

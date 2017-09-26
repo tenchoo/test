@@ -79,11 +79,11 @@ class BaseController extends Controller {
     }
 
 
-    public function show($theme='new',$file=false){
+    public function show($file=false,$theme='new'){
         if(!empty($file)){
             return $this->fetch($theme.'/'.$file);
         }else{
-            return $this->fetch($theme."/". request()->controller().'/'.request()->action());
+            return $this->fetch($theme."/". $this->request->controller().'/'.$this->request->action());
         }
     }
 

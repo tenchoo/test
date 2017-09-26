@@ -29,6 +29,7 @@ class Admin extends CheckLoginController
     protected $_top_mid  = 0;
     protected $_left_mid = 0;
     protected $isMobile;
+    protected $size;
 
     protected function initialize()
     {
@@ -43,6 +44,8 @@ class Admin extends CheckLoginController
 
     private function initConfig(){
         AdminConfigHelper::init();
+        $size = AdminConfigHelper::getValue('LIST_ROWS');
+        $this->size = $size>0 ? $size : 10;
     }
 
     protected function exitIfError($r,$trans=false){
@@ -88,25 +91,34 @@ class Admin extends CheckLoginController
         }
         // $this->assign("is_mobile",$this->isMobile);
         $top_menu  = [];
-        $left_menu = [];
-        foreach ($menu as $v) {
+        $top_mid   = $this->_top_mid;
+        foreach ($menu as $k=>$v) {
             if(!$v['parent']){
                 $top_menu[$v['id']] = $v;
+                unset($menu[$k]);
             }
         }
-        $left_mids = [];
-        $top_mid = $this->_top_mid;
+        isset($top_menu[$top_mid]) && $top_menu[$top_mid]['active'] =1;
+
+        $left_menu = [];
+        $left_mid  = $this->_left_mid;
         if($top_mid){
-            foreach ($menu as $v) {
+            $left_mids = [];
+            foreach ($menu as $k=>$v) {
                 if($v['parent'] == $top_mid){
-                    $left_mids[] = $v['id'];
-                    $v['child'] = [];
+                    $left_mids[]         = $v['id'];
+                    $v['child']          = [];
                     $left_menu[$v['id']] = $v;
+                    unset($menu[$k]);
                 }
             }
             if($left_menu){
                 foreach ($menu as $v) {
                     if(in_array($v['parent'],$left_mids) && isset($left_menu[$v['parent']])){
+                        if($left_mid == $v['id']){
+                            $left_menu[$v['parent']]['active'] = 1;
+                            $v['active'] = 1;
+                        }
                         $left_menu[$v['parent']]['child'][] = $v;
                     }
                 }
@@ -116,6 +128,7 @@ class Admin extends CheckLoginController
         $this->assign('_left_mid',$this->_left_mid);
         $this->assign('_top_menu',array_values($top_menu));
         $this->assign('_left_menu',array_values($left_menu));
+
         $skinCode = AdminConfigHelper::getValue('BY_SKIN');
         $this->assign('_skin',AdminFunctionHelper::getBySkin($skinCode));
         $this->assign('_uinfo',AdminSessionHelper::getUserInfo());
@@ -177,49 +190,32 @@ class Admin extends CheckLoginController
         }
     }
 
-    //==后台初始化代码结束
-
-    public function _param($key,$default='',$emptyErrMsg=''){
-
-        $value = Request::instance()->param($key,$default);
-
-        if($default == $value && !empty($emptyErrMsg)){
-            $this->error($emptyErrMsg);
-        }
-
-        return $value;
-    }
 
     /**
      * @param $key
      * @param string $default
-     * @param string $emptyErrMsg  为空时的报错
+     * @param string $nullMsg  未定义时的报错
      * @return mixed
      */
-    public function _post($key,$default='',$emptyErrMsg=''){
-
-        $value = Request::instance()->post($key,$default);
-
-        if($default == $value && !empty($emptyErrMsg)){
-            $this->error($emptyErrMsg);
-        }
-
-        return $value;
+    public function _param($key,$default=null,$nullMsg=null){
+        return $this->checkParamNull(input("param.".$key),$key,$default,$nullMsg);
     }
-
-    /**
-     * @param $key
-     * @param string $default
-     * @param string $emptyErrMsg  为空时的报错
-     * @return mixed
-     */
-    public function _get($key,$default='',$emptyErrMsg=''){
-        $value = Request::instance()->get($key,$default);
-
-        if($default == $value && !empty($emptyErrMsg)){
-            $this->error($emptyErrMsg);
+    public function _post($key,$default=null,$nullMsg=null){
+        return $this->checkParamNull(input("post.".$key),$key,$default,$nullMsg);
+    }
+    public function _get($key,$default=null,$nullMsg=null){
+        return $this->checkParamNull(input("get.".$key),$key,$default,$nullMsg);
+    }
+    public function checkParamNull($val,$key,$df,$nul){
+        $name  = preg_replace('/\/\w$/', '', $key);
+        if(is_null($val)){
+            if(!is_null($nul)){
+                $this->error($nul ?: Lack($name));
+            }else{
+                return $df;
+            }
         }
-        return $value;
+        return $val;
     }
 
     //== 其它方法

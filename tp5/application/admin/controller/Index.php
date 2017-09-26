@@ -85,7 +85,8 @@ class Index extends BaseController {
                 $user['_username'] = $uname;
 
                 AdminSessionHelper::setLoginUserInfo($user);
-                $this -> success(L('SUC_LOGIN'), url('manager/index'), ['sessionid' => $this->session_id]);
+                session('session_id',$this->session_id . $user['id']);
+                $this->redirect(url('admin/manager/index'));
 
             } else {
                 $this -> error($r['info'],url('index/login'));

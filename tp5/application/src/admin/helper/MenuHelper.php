@@ -144,7 +144,7 @@ class MenuHelper
      */
     public static function getFMenu($uid){
         $is_super = AdminFunctionHelper::isRoot($uid);
-        $menuList = AdminSessionHelper::getAdminTopMenuList($uid);
+        $menuList = [];//AdminSessionHelper::getAdminTopMenuList($uid);
         if(empty($menuList)){//未缓存、或过期
             $current_menus = AdminSessionHelper::getCurrentUserMenu();
             $current_menus = explode(',',rtrim($current_menus,','));
@@ -160,13 +160,13 @@ class MenuHelper
                             'parent' => (int) $val['pid'],
                             'name'   => $val['title'],
                             'icon'   => (int) $val['icon'],
-                            'url'    => $val['url']
+                            'active' => 0,
+                            'url'    => preg_replace('/^\/?Admin\//', '', $val['url'])
                         ];
                     }
                 }
             }
         }
-
         return $menuList;
     }
 

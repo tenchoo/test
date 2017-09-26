@@ -22,40 +22,39 @@ class Config  extends Admin {
      * 配置
      */
     public function index() {
-
-        $map = array();
+        $map   = [];
         $param = [];
-        $name = $this->_param('name', '');
-        if(!empty($name)){
-            $map['name'] = array('like', '%' . $name . '%');
+        $name  = $this->_param('name', '');
+        if($name){
+            $map['name']   = ['like', '%' . $name . '%'];
             $param['name'] = $name;
         }
-        $group = $this->_param('group',-1);
+        $group = $this->_param('group/d',0);
         if($group !== -1){
-            $map['group'] = $group;
+            $map['group']   = $group;
             $param['group'] = $group;
         }
 
-        $page = array('curpage' => $this->_param('p', 0), 'size' => AdminConfigHelper::getValue('LIST_ROWS'));
+        $page = ['curpage' => $this->_param('p/d', 1), 'size' => $this->size];
         $order = 'update_time desc';
-        $result =  (new ConfigLogic())->queryWithPagingHtml($map, $page, $order,$param);
-        if ($result['status']) {
-            $this -> assign("config_groups", AdminConfigHelper::getValue('CONFIG_GROUP_LIST'));
-            $this -> assign("show", $result['info']['show']);
-            $this -> assign("list", $result['info']['list']);
-            return $this -> boye_display();
-        } else {
-            $this -> error($result['info']);
-        }
+        // $result =  (new ConfigLogic())->queryWithPagingHtml($map, $page, $order,$param);
+        // if ($result['status']) {
+        //     $this -> assign("config_groups", AdminConfigHelper::getValue('CONFIG_GROUP_LIST'));
+        //     $this -> assign("show", $result['info']['show']);
+        //     $this -> assign("list", $result['info']['list']);
+        return $this -> show();
+        // } else {
+        //     $this -> error($result['info']);
+        // }
     }
 
     private function setConfigView($group){
-        $map = array('group'=>$group);
-        $result = (new ConfigLogic())->queryNoPaging($map);
-        if($result['status']){
-            return View::instance()->fetch("default/Widget/config_set",['group'=>$group,'list'=>$result['info']]);
-        }
-        return "-0-";
+        // $map = array('group'=>$group);
+        // $result = (new ConfigLogic())->queryNoPaging($map);
+        // if($result['status']){
+        //     return $this->view->fetch("default/Widget/config_set",['group'=>$group,'list'=>$result['info']]);
+        // }
+        // return "-0-";
 
     }
 
@@ -65,10 +64,7 @@ class Config  extends Admin {
     public function set(){
         if(IS_GET){
             $this->configVars();
-
-
-
-            return $this->boye_display();
+            return $this->show();
         }else{
             $config = $this->_post('config/a',[]);
             $order = 'sort desc';
@@ -77,7 +73,7 @@ class Config  extends Admin {
             if($result['status']){
                 //清除缓存
                 Cache::set("config_" . session_id() . '_' . UID ,null);
-                $this->success(L('RESULT_SUCCESS'),url('Admin/Config/set'));
+                $this->success(L('RESULT_SUCCESS'),url('Config/set'));
             }else{
                 $this -> error($result['info']);
             }

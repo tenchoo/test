@@ -43,14 +43,14 @@
     <a href="javascript:;" id="js-hide-menu" class="switch-menu-wrap"><i class="fa fa-bars"></i> </a>
     <ul class="layui-nav layui-layout-left">
       {volist name="_top_menu" id="v"}
-      <li class="layui-nav-item {eq name='_top_mid' value='$v.id'}layui-this{/eq}" data-id="{$v.id}"><a href="{:url($v.url,['_top_mid'=>$v.id])}">{$v.name ?? '...'}</a></li>
+      <li class="layui-nav-item {$v.active ? 'layui-this': ''}"><a href="{:url($v.url,['_top_mid'=>$v.id])}">{$v.name ?? '...'}</a></li>
       {/volist}
     </ul>
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item"><a href="javascript:;" class=""> <i class="fa fa-bell" style="position: relative;top:3px;font-size: 22px;"></i><i class="layui-badge">5</i> </a></li>
       <li class="layui-nav-item">
         <a href="javascript:;">
-          <img src="{:url('index/picture/avatar',['id'=>$_uinfo.id,'size'=>80])}" class="layui-nav-img">
+          <img src="{:getAvatar($_uinfo.id)}" class="layui-nav-img">
           {$_uinfo.nickname}
         </a>
         <dl class="layui-nav-child">
@@ -70,12 +70,12 @@
     <div class="layui-side-scroll">
       <ul class="layui-nav layui-nav-tree layui-nav-side" lay-filter="side-menu">
         {volist name="_left_menu" id="v"}
-        <li class="layui-nav-item layui-nav-itemed">
+        <li class="layui-nav-item {$v.active ? 'layui-nav-itemed': ''}">
           <a class="" href="javascript:;"><i class="layui-icon">&#xe620;</i> {$v.name}</a>
           {notempty name="v.child"}
           <dl class="layui-nav-child">
             {volist name="v.child" id="v2"}
-            <dd class="{eq name='v2.id' value='$_left_mid'}layui-this{/eq}"><a href="{:url($v2.url,['_top_mid'=>$_top_mid,'_left_mid'=>$v2.id])}">&nbsp;&nbsp;&nbsp;&nbsp;{$v2.name}</a></dd>
+            <dd class="{$v2.active ? 'layui-this': ''}"><a href="{:url($v2.url,['_top_mid'=>$_top_mid,'_left_mid'=>$v2.id])}">&nbsp;&nbsp;&nbsp;&nbsp;{$v2.name}</a></dd>
             {/volist}
           </dl>
           {/notempty}

@@ -44,6 +44,9 @@ function Obj2Arr($r,$key=false){
   return $l;
 }
 
+function getAvatar($uid,$size=120){
+  return config('avatar_url').'?id='.$uid.'&size='.$size;
+}
 // ajax 返回
 function ajaxReturn($msg,$url='',$data = [],$count=0,$time=0,$code=0){
   $r = [];
